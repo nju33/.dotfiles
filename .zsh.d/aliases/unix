@@ -1,0 +1,15 @@
+alias j='jobs'
+alias jk='kill `jobs | awk '\''{gsub("\\\[", "", $1);gsub("]", "", $1);print "%"$1}'\'' | xargs -L1000`'
+alias ,='pwd | awk '\''{print "cd "$0}'\'' | pbcopy'
+
+alias pathl="echo $PATH | tr ':' '\n'"
+# /bin
+# /usr/sbin
+# /usr/local/bin
+# ...
+
+if [ 'Darwin' = $(uname -s) ]; then
+  alias ls='ls -FG'   # Mac
+else
+  alias ls='ls -Fv --color'  # Linux
+fi
