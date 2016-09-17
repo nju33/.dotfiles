@@ -1,15 +1,16 @@
 #!/bin/sh
 
-rm ~/.zshrc
-rm -rf ~/.zsh.d
-rm ~/.vimrc
-rm ~/.hyperterm.js
-rm -rf ~/hyperterm
-rm -rf ~/emmet
+function del() {
+  rm -rf ~/$1 >/dev/null 2>&1
+}
 
-ln -s `pwd`/.zshrc ~/.zshrc
-ln -s `pwd`/.zsh.d ~/.zsh.d
-ln -s `pwd`/.vimrc ~/.vimrc
-ln -s `pwd`/.hyperterm.js ~/.hyperterm.js
-ln -s `pwd`/hyperterm ~/hyperterm
-ln -s `pwd`/emmet ~/emmet
+function run() {
+  local files=(
+    .zshrc .zsh.d .vimrc .hyperterm.js hyperterm
+    emmet .npmrc
+  )
+  for t in ${files[@]}; do del $t; done
+  for t in ${files[@]}; do ln -s `pwd`/$t ~/$t; done
+}
+
+run
