@@ -23,7 +23,7 @@ set hlsearch
 
 colorscheme tender
 
-set runtimepath+=~/.vim/repos/github.com/Shougo/dein.vim
+set runtimepath+=~/.vim/dein.vim
 call dein#begin('~/.vim')
 call dein#add('scrooloose/nerdtree')
 call dein#add('mattn/emmet-vim')
