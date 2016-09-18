@@ -27,6 +27,11 @@ setopt share_history
 # 履歴から重複排除
 setopt hist_ignore_all_dups
 
+# NodeJS
+function node_resolve_convert_source_map() {
+  sed -i -e 's/sourceMappingURL=foo.js.map//g' node_modules/convert-source-map/index.js
+}
+
 # GO
 function remove_gopathbin() {
   local path=`echo $PATH | awk -v p=:$GOPATH/bin '{sub(p, "", $0);print}'`
