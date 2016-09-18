@@ -1,3 +1,4 @@
+syntax enable
 set fenc=utf-8
 set nobackup
 set noswapfile
@@ -20,14 +21,12 @@ set smartcase
 set incsearch
 set hlsearch
 
-if isdirectory('~/.vim_plugins')
-  set runtimepath^=~/.vim_plugins/repos/github.com/Shougo/dein.vim
+colorscheme tender
 
-  call dein#begin(~/.vim_plugins))
-
-  call dein#add('scrooloose/nerdtree')
-
-  call dein#end()
-
-  filetype plugin indent on
-endif
+set runtimepath+=~/.vim/repos/github.com/Shougo/dein.vim
+call dein#begin('~/.vim')
+call dein#add('scrooloose/nerdtree')
+call dein#add('mattn/emmet-vim')
+call dein#add('tpope/vim-fugitive')
+call dein#end()
+filetype plugin indent on

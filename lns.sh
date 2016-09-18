@@ -2,8 +2,8 @@
 
 function run() {
   local files=(
-    .zshrc .zsh.d .vimrc .hyperterm.js hyperterm
-    emmet .npmrc
+    .zshrc .zsh.d .vimrc .vim
+    .hyperterm.js hyperterm emmet .npmrc
   )
   for f in ${files[@]}; do
     rm -rf ~/$f >/dev/null 2>&1

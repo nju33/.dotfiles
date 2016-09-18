@@ -1,4 +1,5 @@
 export LANG=ja_JP.UTF-8
+export PATH=/usr/local/bin:$PATH
 # ${fg[色指定]}...${reset_color}
 autoload colors
 colors
