@@ -26,6 +26,16 @@ SAVEHIST=1000
 setopt share_history
 # 履歴から重複排除
 setopt hist_ignore_all_dups
+# 履歴ファイルの保存先
+export HISTFILE=${HOME}/.zsh_history
+# メモリに保存される履歴の件数
+export HISTSIZE=1000
+# 履歴ファイルに保存される履歴の件数
+export SAVEHIST=100000
+# 開始と終了を記録
+setopt EXTENDED_HISTORY
+# 小文字でも大文字にマッチ変換
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
 # NodeJS
 function node_resolve_convert_source_map() {
