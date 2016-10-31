@@ -109,9 +109,9 @@ if [[ $ZPLUG_HOME != "" ]]; then
     bindkey '^]' autosuggest-accept
   fi
 
-  zplug "zsh-users/zsh-syntax-highlighting", nice:18
+  zplug "zsh-users/zsh-syntax-highlighting", nice:19
 
-  zplug "zsh-users/zsh-history-substring-search", nice:19
+  zplug "zsh-users/zsh-history-substring-search", nice:18
   if zplug check "zsh-users/zsh-history-substring-search"; then
     bindkey -M emacs '^P' history-substring-search-up
     bindkey -M emacs '^N' history-substring-search-down
