@@ -94,19 +94,28 @@ export SBT_OPTS="-Xms2048m -Xmx2048m -Xss10m -XX:+UseParallelGC"
 if [[ $ZPLUG_HOME != "" ]]; then
   source $ZPLUG_HOME/init.zsh
 
+  zplug "totora0155/colorhexa-search-zsh", nice:-20
+
   #https://github.com/supercrabtree/k
-  zplug "supercrabtree/k", as:"command", \
+  zplug "supercrabtree/k", nice:10, as:"command", \
     hook-load:"source $ZPLUG_HOME/repos/supercrabtree/k/k.plugin.zsh"
+
   #https://github.com/rupa/z
-  zplug "rupa/z", as:"command", \
+  zplug "rupa/z", nice:10, as:"command", \
     hook-load:"source $ZPLUG_HOME/repos/rupa/z/z.sh"
-  zplug "zsh-users/zsh-syntax-highlighting"
-  zplug "zsh-users/zsh-history-substring-search"
-  bindkey -M emacs '^P' history-substring-search-up
-  bindkey -M emacs '^N' history-substring-search-down
-  zplug "zsh-users/zsh-autosuggestions"
-  bindkey '^]' autosuggest-accept
-  zplug "totora0155/colorhexa-search-zsh"
+
+  zplug "zsh-users/zsh-autosuggestions", nice:10
+  if zplug check "zsh-users/zsh-autosuggestions"; then
+    bindkey '^]' autosuggest-accept
+  fi
+
+  zplug "zsh-users/zsh-syntax-highlighting", nice:18
+
+  zplug "zsh-users/zsh-history-substring-search", nice:19
+  if zplug check "zsh-users/zsh-history-substring-search"; then
+    bindkey -M emacs '^P' history-substring-search-up
+    bindkey -M emacs '^N' history-substring-search-down
+  fi
   zplug load
 fi
 
