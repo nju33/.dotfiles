@@ -12,5 +12,5 @@ function run() {
 }
 run
 
-cp fontsFolder/*.{ttf,otf} /Library/Fonts/
+cp fonts/*.{ttf,otf} /Library/Fonts/
 
