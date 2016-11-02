@@ -11,3 +11,6 @@ function run() {
   done
 }
 run
+
+cp fontsFolder/*.{ttf,otf} /Library/Fonts/
+
