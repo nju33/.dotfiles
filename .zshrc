@@ -38,6 +38,9 @@ setopt EXTENDED_HISTORY
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
 # NodeJS
+# for NodeJS > v6.x
+alias node='node --harmony'
+
 function node_resolve_convert_source_map() {
   sed -i -e 's/sourceMappingURL=foo.js.map//g' node_modules/convert-source-map/index.js
 }
