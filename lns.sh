@@ -2,7 +2,7 @@
 
 function run() {
   local files=(
-    .zshrc .zsh.d .vimrc .vim
+    .zshrc .zsh.d .vimrc .vim .sbt
     .hyperterm.js hyperterm emmet .npmrc
   )
   for f in ${files[@]}; do
