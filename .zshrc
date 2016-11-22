@@ -99,6 +99,9 @@ if [[ $ZPLUG_HOME != "" ]]; then
 
   zplug "totora0155/colorhexa-search-zsh", nice:-20
 
+  zplug "kennethreitz/autoenv", nice:-20, \
+    hook-load:"source $ZPLUG_HOME/repos/kennethreitz/autoenv/activate.sh"
+
   #https://github.com/supercrabtree/k
   zplug "supercrabtree/k", nice:10, as:"command", \
     hook-load:"source $ZPLUG_HOME/repos/supercrabtree/k/k.plugin.zsh"
