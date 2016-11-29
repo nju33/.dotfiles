@@ -40,6 +40,24 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 # ポートが仕様中かとプロセスIDを調べる
 alias lsofip='lsof -i -P | grep'
 
+function glu() {
+  if [ -z $1 ]; then
+    echo "totora0155? nju33?"
+    return 1;
+  fi
+
+  case "$1" in
+    "totora0155")
+      git config --local user.name "totora0155";
+      git config --local user.email "jun.sasaki@mvrck.co.jp" ;
+      echo "Change to totora0155";;
+    "nju33")
+      git config --local user.name "nju33";
+      git config --local user.email "nju33.ki@gmail.com" ;
+      echo "Change to nju33";;
+  esac
+}
+
 # NodeJS
 # for NodeJS > v6.x
 alias node='node --harmony'
