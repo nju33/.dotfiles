@@ -37,6 +37,9 @@ setopt EXTENDED_HISTORY
 # 小文字でも大文字にマッチ変換
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
+# ポートが仕様中かとプロセスIDを調べる
+alias lsofip='lsof -i -P | grep'
+
 # NodeJS
 # for NodeJS > v6.x
 alias node='node --harmony'
