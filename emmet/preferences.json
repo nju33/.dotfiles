@@ -1,3 +1,9 @@
 {
-  "stylus.valueSeparator": ": "
+  "css.autoInsertVendorPrefixes": false,
+  "less.autoInsertVendorPrefixes": false,
+  "scss.autoInsertVendorPrefixes": false,
+  "sass.autoInsertVendorPrefixes": false,
+  "stylus.valueSeparator": ": ",
+  "stylus.autoInsertVendorPrefixes": false,
+  "caniuse.enabled": false
 }
