@@ -40,6 +40,13 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 # ポートが仕様中かとプロセスIDを調べる
 alias lsofip='lsof -i -P | grep'
 
+function today() {
+  today=`date +"%FT%TZ"`
+  echo $today
+  echo $today > /dev/null | pbcopy
+  return 0;
+}
+
 function glu() {
   if [ -z $1 ]; then
     echo "totora0155? nju33?"
