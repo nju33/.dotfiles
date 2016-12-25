@@ -69,10 +69,6 @@ function glu() {
 # for NodeJS > v6.x
 alias node='node --harmony'
 
-function node_resolve_convert_source_map() {
-  sed -i -e 's/sourceMappingURL=foo.js.map//g' node_modules/convert-source-map/index.js
-}
-
 # GO
 function remove_gopathbin() {
   local path=`echo $PATH | awk -v p=:$GOPATH/bin '{sub(p, "", $0);print}'`
