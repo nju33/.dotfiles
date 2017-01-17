@@ -65,6 +65,11 @@ function glu() {
   esac
 }
 
+function copyDockerMachineIP() {
+  echo `docker-machine ip $1` > /dev/null 2>&1 | pbcopy
+  return 0;
+}
+
 # NodeJS
 # for NodeJS > v6.x
 alias node='node --harmony'
