@@ -34,6 +34,8 @@ export HISTSIZE=1000
 export SAVEHIST=100000
 # 開始と終了を記録
 setopt EXTENDED_HISTORY
+# 正規表現なんかでマッチしなくても、エラーを出さない
+setopt no_nomatch
 # 小文字でも大文字にマッチ変換
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
@@ -63,6 +65,11 @@ function glu() {
       git config --local user.email "nju33.ki@gmail.com" ;
       echo "Change to nju33";;
   esac
+}
+
+function glsu() {
+  git diff --name-status --diff-filter=U | cut -f 2
+  return 0;
 }
 
 function copyDockerMachineIP() {
