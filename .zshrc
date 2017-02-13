@@ -39,6 +39,16 @@ setopt no_nomatch
 # 小文字でも大文字にマッチ変換
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
+# mkdir; cd
+function mkdirc() {
+  if [ -z $1 ]; then
+    echo 'ディレクトリ名を忘れてます'
+    return 1;
+  fi
+
+  mkdir $1 && cd $_
+  return 0;
+}
 # ポートが仕様中かとプロセスIDを調べる
 alias lsofip='lsof -i -P | grep'
 
