@@ -39,6 +39,28 @@ setopt no_nomatch
 # 小文字でも大文字にマッチ変換
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
+function resizeForIcns() {
+  local base=icon_512x512@2x.png
+  if [ ! -e $base ]; then
+    echo 'icon_512x512@2x.pngファイルがありません'
+    return 1;
+  fi
+
+  convert -resize 16x $base icon_16x16.png
+  convert -resize 32x $base icon_16x16@2x.png
+  convert -resize 32x $base icon_32x32.png
+  convert -resize 64x $base icon_32x32@2x.png
+  convert -resize 128x $base icon_128x128.png
+  convert -resize 256x $base icon_128x128@2x.png
+  convert -resize 256x $base icon_256x256.png
+  convert -resize 512x $base icon_256x256@2x.png
+  convert -resize 512x $base icon_512x512.png
+
+  pngquant --ext .png --force *.png
+
+  return 0;
+}
+
 # mkdir; cd
 function mkdirc() {
   if [ -z $1 ]; then
