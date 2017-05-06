@@ -1,5 +1,19 @@
 set -gx PATH {$HOME}/.cargo/bin $PATH
 
+alias j='jobs'
+function jk --description 'kill -9 to all background jobs'
+  jobs > /dev/null 2>&1
+
+  if test $status -eq 1
+    printf ( _ "%s: Background jobs not found\n") jk
+    return 1
+  end
+
+  for p in (jobs --pid | sed '0d')
+    kill -9 $p
+  end
+end
+
 alias aghtml='ag -S --html --jade'
 alias agjs='ag -S --js'
 alias agts='ag -S --ts'
