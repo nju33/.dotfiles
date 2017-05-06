@@ -14,8 +14,8 @@
   a = add
   ad = add
   adm = "!f() { git ls-files -m | xargs git add ; }; f"
+  c = commit
   cm = commit
-  cma = commit --amend
   co = checkout
   ours = git checkout --ours
   theirs = git checkout --theirs
