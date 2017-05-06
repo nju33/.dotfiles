@@ -1,5 +1,7 @@
 set -gx PATH {$HOME}/.cargo/bin $PATH
 
+alias «='pwd | pbcopy'
+
 alias j='jobs'
 function jk --description 'kill -9 to all background jobs'
   jobs > /dev/null 2>&1
