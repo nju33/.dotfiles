@@ -4,6 +4,18 @@
 sh lns.sh
 ```
 
+### fish
+
+[#](https://fishshell.com/docs/current/tutorial.html)
+
+### plugins
+
+```bash
+# brew install peco thefuck
+# curl -L https://get.oh-my.fish | fish
+omf install peco thefuck
+```
+
 ### vim
 
 ```bash
