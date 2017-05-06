@@ -1,11 +1,12 @@
 module.exports = {
   config: {
-    shell: 'zsh',
+    shell: '/usr/local/bin/fish',
     // default font size in pixels for all tabs
-    fontSize: 11,
+    fontSize: 8.75,
 
     // font family with optional fallbacks
-    fontFamily: 'SourceHanCodeJP-Normal',
+    // fontFamily: 'SourceHanCodeJP-Normal',
+    fontFamily: 'Menlo, Consolas, \'DejaVu Sans Mono\', monospacel',
 
     // terminal cursor background color (hex)
     cursorColor: '#bd4a4d',
@@ -50,17 +51,18 @@ module.exports = {
     ]
   },
 
+  bell: false,
+
   // a list of plugins to fetch and install from npm
   // format: [@org/]project[#version]
   // examples:
   //   `hyperpower`
   //   `@company/project`
   //   `project#1.0.1`
-  bell: false,
-
   plugins: [
     'hyperterm-atom-dark',
-    'hyperterm-alternatescroll'
+    'hyperterm-alternatescroll',
+    'hyper-always-on-top',
   ],
 
   // in development, you can create a directory under

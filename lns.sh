@@ -1,16 +1,23 @@
 #!/bin/sh
 
+function replace_to_path() {
+  echo $1 | sed 's/_/\//g'
+}
+
 function run() {
   local files=(
-    .zshrc .zsh.d .vimrc .vim .sbt
-    .hyperterm.js hyperterm emmet .npmrc
+    .zshrc .zsh.d .vimrc .vim .gitconfig
+    .agignore .hyper.js emmet .npmrc
+    .config_fish_config.fish
+    .config_peco_config.json
   )
   for f in ${files[@]}; do
-    rm -rf ~/$f >/dev/null 2>&1
-    ln -s `pwd`/$f ~/$f
+    local src=`pwd`/$f
+    local dest=~/`replace_to_path $f`
+    echo "$src -> $dest"
+    rm -rf $dest; ln -s $src $dest
   done
 }
 run
 
 cp fonts/*.{ttf,otf} /Library/Fonts/
-

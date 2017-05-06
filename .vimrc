@@ -1,4 +1,3 @@
-syntax enable
 set fenc=utf-8
 set nobackup
 set noswapfile
@@ -21,12 +20,14 @@ set smartcase
 set incsearch
 set hlsearch
 
-colorscheme tender
+syntax on
+colorscheme onedark
 
 set runtimepath+=~/.vim/dein.vim
 call dein#begin('~/.vim')
-call dein#add('scrooloose/nerdtree')
-call dein#add('mattn/emmet-vim')
-call dein#add('tpope/vim-fugitive')
+call dein#add('sheerun/vim-polyglot')
+" call dein#add('scrooloose/nerdtree')
+" call dein#add('mattn/emmet-vim')
+" call dein#add('tpope/vim-fugitive')
 call dein#end()
 filetype plugin indent on

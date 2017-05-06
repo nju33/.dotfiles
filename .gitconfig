@@ -1,0 +1,34 @@
+[user]
+  name = nju33
+  email = nju33.ki@gmail.com
+[alias]
+  s = status
+  sh = show
+  ft = fetch
+  rbm = rebase master
+  rbi = rebase -i
+  rbir = rebase -i --root
+  ad = add
+  adA = add -A
+  adm = "!f() { git ls-files -m | xargs git add ; }; f"
+  adp = add -p
+  cm = commit
+  cma = commit --amend
+  co = checkout
+  co-o = git checkout --ours
+  co-t = git checkout --theirs
+  br = branch
+  ba = branch -a
+  bm = branch --merged
+  bn = branch --no-merged
+  wc = whatchanged
+  ls = log --stat
+  lp = log -p
+  l- = log --pretty=oneline
+  df = diff master
+  ds = diff --staged
+  gr = grep -n
+  # mergeの際にconflictが起きたファイルを編集
+  edit-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; vim `f`"
+  # mergeの際にconflictが起きたファイルをadd
+  add-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
