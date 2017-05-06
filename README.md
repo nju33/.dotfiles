@@ -27,6 +27,6 @@ brew bundle
 ### atom
 
 ```bash
-apm list -b > Apmfile 
+apm list -bi --no-dev > Apmfile  
 apm install --packages-file Apmfile
 ```
