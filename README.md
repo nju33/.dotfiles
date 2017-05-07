@@ -14,6 +14,7 @@ sh lns.sh
 # brew install peco thefuck
 # curl -L https://get.oh-my.fish | fish
 omf install peco thefuck
+omf install https://github.com/nju33/plugin-cpd
 ```
 
 ### vim
