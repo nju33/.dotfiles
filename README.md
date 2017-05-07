@@ -15,6 +15,7 @@ sh lns.sh
 # curl -L https://get.oh-my.fish | fish
 omf install peco thefuck
 omf install https://github.com/nju33/plugin-cpd
+omf install https://github.com/nju33/plugin-rmnm
 ```
 
 ### vim
