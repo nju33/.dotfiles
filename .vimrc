@@ -22,6 +22,7 @@ set hlsearch
 
 syntax on
 colorscheme onedark
+hi Normal ctermbg=none
 
 set runtimepath+=~/.vim/dein.vim
 call dein#begin('~/.vim')
