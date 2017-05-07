@@ -5,6 +5,10 @@
   s = status
   st = status
   sh = show
+  ra = remote add
+  rao = remote add origin
+  rs = remote set-url
+  rso = remote set-url origin
   p = push
   pu = push -u
   ft = fetch
@@ -12,6 +16,7 @@
   rbi = rebase -i
   rbir = rebase -i --root
   a = add
+  ap = add -p
   ad = add
   adm = "!f() { git ls-files -m | xargs git add ; }; f"
   c = commit
