@@ -45,6 +45,8 @@ function mkdirc --description 'mkdir + cd'
 end
 
 function fish_user_key_bindings
-  bind \cp 'peco_select_history (commandline -b)'
+  # constrol+o
+  bind \co 'peco_select_history (commandline -b)'
+  # esc+esc
   bind \e\e 'thefuck-command-line'
 end
