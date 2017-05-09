@@ -24,7 +24,7 @@ syntax on
 colorscheme onedark
 hi Normal ctermbg=none
 
-set runtimepath+=~/.vim/dein.vim
+set runtimepath+=~/.vim/repos/github.com/Shougo/dein.vim
 call dein#begin('~/.vim')
 call dein#add('sheerun/vim-polyglot')
 " call dein#add('scrooloose/nerdtree')
