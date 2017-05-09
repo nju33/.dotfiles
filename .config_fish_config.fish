@@ -1,4 +1,6 @@
 set -gx PATH {$HOME}/.cargo/bin $PATH
+set -gx LC_ALL en_US.UTF-8
+set -gx LANG en_US.UTF-8
 
 alias «='pwd | pbcopy'
 
