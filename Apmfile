@@ -3,6 +3,7 @@ autoclose-html@0.23.0
 autoprefixer@3.6.1
 busy-signal@1.4.1
 colorio@0.2.1
+console-log@1.10.0
 cssnano@1.1.0
 docblockr@0.9.4
 docker@0.7.0
@@ -10,10 +11,10 @@ editorconfig@2.2.2
 emmet@2.4.3
 file-icons@2.1.4
 flatwhite-syntax@0.8.0
-flex-tab-bar@1.0.1
 flow-ide@1.4.2
 git-plus@7.8.0
 google-translate-modal@1.2.2
+intentions@1.1.2
 language-babel@2.58.0
 language-docker@1.1.7
 language-handlebars@0.2.0
