@@ -25,6 +25,7 @@ linter@2.1.4
 linter-ui-default@1.2.3
 linter-xo@0.22.0
 pane-browser@1.6.0
+project-folder@1.3.0
 qolor@0.4.1
 racer@0.20.0
 script@3.14.1
