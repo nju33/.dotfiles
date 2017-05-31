@@ -9,8 +9,12 @@
   rao = remote add origin
   rs = remote set-url
   rso = remote set-url origin
+  rp = remote prune --dry-run
+  rP = remote prune
   p = push
   pu = push -u
+  ll = pull
+  llr = pull --rebase
   ft = fetch
   rbm = rebase master
   rbi = rebase -i
