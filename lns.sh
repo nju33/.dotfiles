@@ -6,6 +6,7 @@ function replace_to_path() {
 
 function run() {
   local files=(
+    .sshrc .sshrc.d
     .zshrc .zsh.d .vimrc .vim .gitconfig
     .agignore .hyper.js emmet .npmrc
     .config_fish_config.fish
