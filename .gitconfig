@@ -36,6 +36,10 @@
   ls = log --stat
   lp = log -p
   l- = log --pretty=oneline
+  l-- = log --pretty=oneline -2
+  l--- = log --pretty=oneline -3
+  l---- = log --pretty=oneline -4
+  l----- = log --pretty=oneline -5
   df = diff master
   ds = diff --staged
   gr = grep -n
