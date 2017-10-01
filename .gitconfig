@@ -25,6 +25,7 @@
   adm = "!f() { git ls-files -m | xargs git add ; }; f"
   c = commit
   cm = commit
+  empty-commit=commit --allow-empty --allow-empty-message -m 'Init'
   co = checkout
   ours = git checkout --ours
   theirs = git checkout --theirs
