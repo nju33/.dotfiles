@@ -2,6 +2,10 @@ set -gx PATH {$HOME}/.cargo/bin $PATH
 set -gx LC_ALL en_US.UTF-8
 set -gx LANG en_US.UTF-8
 
+function chrome-dev --description 'open chrome-canary in devmode'
+  /Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary --args --disable-web-security --user-data-dir
+end
+
 alias «='pwd | pbcopy'
 
 alias j='jobs'
