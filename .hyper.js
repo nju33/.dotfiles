@@ -62,7 +62,6 @@ module.exports = {
   plugins: [
     'hyperterm-atom-dark',
     'hyperterm-alternatescroll',
-    'hyper-always-on-top',
   ],
 
   // in development, you can create a directory under

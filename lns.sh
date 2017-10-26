@@ -21,4 +21,4 @@ function run() {
 }
 run
 
-cp fonts/*.{ttf,otf} /Library/Fonts/
+# cp fonts/*.{ttf,otf} /Library/Fonts/
