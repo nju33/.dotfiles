@@ -20,15 +20,19 @@ set smartcase
 set incsearch
 set hlsearch
 
-syntax on
+syntax enable
 colorscheme onedark
 hi Normal ctermbg=none
 
 set runtimepath+=~/.vim/repos/github.com/Shougo/dein.vim
-call dein#begin('~/.vim')
-call dein#add('sheerun/vim-polyglot')
-" call dein#add('scrooloose/nerdtree')
-" call dein#add('mattn/emmet-vim')
-" call dein#add('tpope/vim-fugitive')
-call dein#end()
+if dein#load_state('~/.vim/repos/github.com/Shougo/dein.vim')
+  call dein#begin('~/.vim/repos/github.com/Shougo/dein.vim')
+  call dein#add('sheerun/vim-polyglot')
+  " call dein#add('scrooloose/nerdtree')
+  " call dein#add('mattn/emmet-vim')
+  " call dein#add('tpope/vim-fugitive')
+  call dein#end()
+  call dein#save_state()
+endif
+
 filetype plugin indent on
