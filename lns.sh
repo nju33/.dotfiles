@@ -11,6 +11,7 @@ function run() {
     .agignore .hyper.js emmet .npmrc
     .config_fish_config.fish
     .config_peco_config.json
+    .config_moza
   )
   for f in ${files[@]}; do
     local src=`pwd`/$f
