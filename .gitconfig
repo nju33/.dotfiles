@@ -27,6 +27,13 @@
   cm = commit
   empty-commit=commit --allow-empty --allow-empty-message -m 'Init'
   co = checkout
+  codb= "!f() { bash -c '\
+    url=$(git ls-remote --get-url); \
+    default_branch=$(git ls-remote --symref $url | head -n1 | cut -d/ -f3 | cut -f1 ); \
+    git checkout ${default_branch} > /dev/null \
+      && git branch -d $0 \
+      && git checkout -b $0 ; \
+  ' $1 ; }; f"
   ours = git checkout --ours
   theirs = git checkout --theirs
   br = branch
