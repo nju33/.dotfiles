@@ -40,6 +40,7 @@
   ba = branch -a
   bm = branch --merged
   bn = branch --no-merged
+  back = reset --hard HEAD~1
   wc = whatchanged
   ls = log --stat
   lp = log -p
