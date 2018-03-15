@@ -13,3 +13,6 @@ setup-ts-module:
     jest \
     @types/jest \
     ts-jest
+
+  cp ~/.dotfiles/configfiles/tsconfig.json tsconfig.json
+  cp ~/.dotfiles/configfiles/tslint.json tslint.json

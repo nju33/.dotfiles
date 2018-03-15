@@ -39,7 +39,7 @@ alias agphp='ag -S --php'
 alias agsh='ag -S --sh'
 alias agsql='ag -S --sql'
 
-alias .j='just --justfile ~/.justfile --working-directory ~'
+alias .j='just --justfile ~/.justfile --working-directory .'
 
 function mkdirc --description 'mkdir + cd'
   set -l name $argv[1]
