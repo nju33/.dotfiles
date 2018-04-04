@@ -41,6 +41,20 @@ alias agsql='ag -S --sql'
 
 alias .j='just --justfile ~/.justfile --working-directory .'
 
+function .gitignore --description 'create .gitinogre'
+  set -l name $argv[1]
+  echo $name
+
+  switch $name
+    case "node"
+      gibo Node macOS Windows SublimeText VisualStudioCode Vim Emacs Xcode Ecilipse > .gitignore
+    case "rust"
+      gibo Rust macOS Windows SublimeText VisualStudioCode Vim Emacs Xcode Ecilipse > .gitignore
+    case '*'
+      echo unknown name
+  end
+end
+
 function mkdirc --description 'mkdir + cd'
   set -l name $argv[1]
 
