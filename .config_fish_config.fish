@@ -72,3 +72,39 @@ function fish_user_key_bindings
   # esc+esc
   bind \e\e 'thefuck-command-line'
 end
+
+function n_error
+  echo 'please set variable to use `set -x $NJU33_USER_PASSWORD ...` in ~/.config/fish/conf.d/*'
+end
+
+function n9
+  if echo $NJU33_USER_PASSWORD | grep . > /dev/null
+    echo $NJU33_USER_PASSWORD | sudo -S n 9 > /dev/null 2>&1
+  else
+    n_error
+  end
+end
+
+function n10
+  if echo $NJU33_USER_PASSWORD | grep . > /dev/null
+    echo $NJU33_USER_PASSWORD | sudo -S n 10 > /dev/null 2>&1
+  else
+    n_error
+  end
+end
+
+function n11
+  if echo $NJU33_USER_PASSWORD | grep . > /dev/null
+    echo $NJU33_USER_PASSWORD | sudo -S n 11 > /dev/null 2>&1
+  else
+    n_error
+  end
+end
+
+function n12
+  if echo $NJU33_USER_PASSWORD | grep . > /dev/null
+    echo $NJU33_USER_PASSWORD | sudo -S n 12 > /dev/null 2>&1
+  else
+    n_error
+  end
+end

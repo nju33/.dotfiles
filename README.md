@@ -8,6 +8,14 @@ sh lns.sh
 
 [#](https://fishshell.com/docs/current/tutorial.html)
 
+```sh
+touch ~/.config/fish/conf.d/nju33.fish
+```
+
+```
+set -x NJU33_USER_PASSWORD ...
+```
+
 ### plugins
 
 ```bash
