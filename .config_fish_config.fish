@@ -1,4 +1,6 @@
+set -Ux TZ Asia/Tokyo
 set -gx PATH {$HOME}/.cargo/bin $PATH
+set -gx PATH {$HOME}/.deno/bin $PATH
 set -gx LC_ALL en_US.UTF-8
 set -gx LANG en_US.UTF-8
 
@@ -20,6 +22,23 @@ function jk --description 'kill -9 to all background jobs'
   for p in (jobs --pid | sed '0d')
     kill -9 $p
   end
+end
+
+function runts
+  set -l tmpfile (mktemp)
+  set -l tmpfile_ts {$tmpfile}.ts
+  mv $tmpfile $tmpfile_ts
+
+  if test -n "$argv"
+    echo $argv > $tmpfile_ts
+  else
+    cat 1> $tmpfile_ts
+  end
+
+  cat $tmpfile_ts
+  deno $tmpfile_ts
+
+  rm $tmpfile_ts
 end
 
 alias aghtml='ag -S --html --jade'
