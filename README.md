@@ -16,9 +16,11 @@ touch ~/.config/fish/conf.d/nju33.fish
 set -x NJU33_USER_PASSWORD ...
 ```
 
-### plugins
+### theme & plugins
 
 ```bash
+omf install eden
+
 # brew install peco thefuck
 # curl -L https://get.oh-my.fish | fish
 omf install peco thefuck
