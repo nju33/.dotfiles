@@ -127,3 +127,14 @@ function n12
     n_error
   end
 end
+
+function serveo
+  set -l subdomain $argv[1]
+
+  if test -n "$subdomain"
+    ssh -R $subdomain:80:localhost:8888 serveo.net
+  else
+    ssh -R 80:localhost:8888 serveo.net
+  end
+
+end
