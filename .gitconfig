@@ -25,8 +25,9 @@
   adm = "!f() { git ls-files -m | xargs git add ; }; f"
   c = commit
   cm = commit
-  empty-commit=commit --allow-empty --allow-empty-message -m 'Init'
+  empty-commit= commit --allow-empty --allow-empty-message -m 'Init'
   co = checkout
+  rpar = rev-parse --abbrev-ref HEAD
   codb= "!f() { bash -c '\
     url=$(git ls-remote --get-url); \
     default_branch=$(git ls-remote --symref $url | head -n1 | cut -d/ -f3 | cut -f1 ); \
@@ -42,9 +43,10 @@
   bn = branch --no-merged
   back = reset --hard HEAD~1
   wc = whatchanged
-  ls = log --stat
+  ls = log --pretty=oneline
+  lsa = log --stat
   lp = log -p
-  l- = log --pretty=oneline
+  l- = log --pretty=oneline -1
   l-- = log --pretty=oneline -2
   l--- = log --pretty=oneline -3
   l---- = log --pretty=oneline -4
