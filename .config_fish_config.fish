@@ -4,6 +4,14 @@ set -gx PATH {$HOME}/.deno/bin $PATH
 set -gx LC_ALL en_US.UTF-8
 set -gx LANG en_US.UTF-8
 
+set -gx PGHOST 0.0.0.0
+set -gx PGUSER postgres
+set -gx PGPORT 54321
+set -gx PGPASSWORD ''
+function pg_server --description 'docker run pg'
+  docker run --rm -p 54321:5432 postgres
+end
+
 function chrome-dev --description 'open chrome-canary in devmode'
   /Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary --args --disable-web-security --user-data-dir
 end
