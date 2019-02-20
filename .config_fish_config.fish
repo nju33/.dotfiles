@@ -9,7 +9,7 @@ set -gx PGUSER postgres
 set -gx PGPORT 54321
 set -gx PGPASSWORD ''
 function pg_server --description 'docker run pg'
-  docker run --rm -p 54321:5432 -e  POSTGRES_INITDB_ARGS="--encoding=UTF-8 --locale=C" nju33/postgres
+  docker run --rm -p 54321:5432 postgres
 end
 
 function chrome-dev --description 'open chrome-canary in devmode'
