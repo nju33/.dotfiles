@@ -49,6 +49,11 @@ function runts
   rm $tmpfile_ts
 end
 
+function sourcefish --description 'load ~/.config/fish/config.fish'
+  echo source  ~/.config/fish/config.fish
+  source  ~/.config/fish/config.fish
+end
+
 alias aghtml='ag -S --html --jade'
 alias agjs='ag -S --js'
 alias agts='ag -S --ts'
@@ -67,6 +72,12 @@ alias agsh='ag -S --sh'
 alias agsql='ag -S --sql'
 
 alias .j='just --justfile ~/.justfile --working-directory .'
+
+alias lerna='yarn lerna'
+alias gulp='yarn gulp'
+alias jest='yarn jest'
+alias eslint='yarn eslint'
+alias prettier='yarn prettier'
 
 function .gitignore --description 'create .gitinogre'
   set -l name $argv[1]
