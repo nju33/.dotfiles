@@ -79,6 +79,15 @@ alias jest='yarn jest'
 alias eslint='yarn eslint'
 alias prettier='yarn prettier'
 
+function reponame --description 'get a GitHub remote url by ssh'
+  if test -z "$argv[1]"
+    echo リポジトリ名を指定して
+    return 1
+  end
+
+  echo git@github.com:nju33/$argv[1].git
+end
+
 function .gitignore --description 'create .gitinogre'
   set -l name $argv[1]
   echo $name
