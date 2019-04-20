@@ -74,10 +74,17 @@ alias agsql='ag -S --sql'
 alias .j='just --justfile ~/.justfile --working-directory .'
 
 alias lerna='yarn lerna'
+alias next='yarn next'
+alias nuxt='yarn nuxt'
+alias micro-dev='yarn micro-dev'
+alias webpack-dev-server='yarn webpack-dev-server'
 alias gulp='yarn gulp'
 alias jest='yarn jest'
 alias eslint='yarn eslint'
 alias prettier='yarn prettier'
+alias now='yarn now'
+alias nodemonn='yarn nodemon'
+alias pm2='yarn pm2'
 
 function reponame --description 'get a GitHub remote url by ssh'
   if test -z "$argv[1]"
