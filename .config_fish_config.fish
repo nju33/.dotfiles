@@ -83,6 +83,7 @@ alias jest='yarn jest'
 alias eslint='yarn eslint'
 alias prettier='yarn prettier'
 alias now='yarn now'
+alias docz='yarn docz'
 alias nodemonn='yarn nodemon'
 alias pm2='yarn pm2'
 
