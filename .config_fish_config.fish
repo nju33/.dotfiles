@@ -73,6 +73,8 @@ alias agsql='ag -S --sql'
 
 alias .j='just --justfile ~/.justfile --working-directory .'
 
+alias ts-node='yarn ts-node'
+alias tsc='yarn tsc'
 alias lerna='yarn lerna'
 alias next='yarn next'
 alias nuxt='yarn nuxt'
