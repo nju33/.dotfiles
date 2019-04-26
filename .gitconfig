@@ -3,8 +3,7 @@
   email = nju33.ki@gmail.com
 [alias]
   s = status
-  st = status
-  sh = show
+  ow = show
   ra = remote add
   rao = remote add origin
   rs = remote set-url
