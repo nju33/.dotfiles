@@ -95,12 +95,15 @@ alias pm2='yarn pm2'
 function .env --description 'To edit a closest .env file'
   set -l cwd (pwd)
   if test -n "$argv[1]"
-    echo "$argv[1]"
     set cwd "$argv[1]"
   end
 
-  if test -f "$cwd/.env"
-    vim .env
+  set -l relative_since_home_dir (string replace "$HOME" "" "$cwd")
+  set -l env_file "$cwd/.env"
+
+  if test -f "$env_file"
+    echo "$relative_since_home_dir/.env found!"
+    vim "$env_file"
     return 0;
   end
 
@@ -111,6 +114,7 @@ function .env --description 'To edit a closest .env file'
     return 1;
   end
 
+  echo "$relative_since_home_dir/.env not found, thus moving to parent dir"
   .env (dirname "$cwd")
 end
 
