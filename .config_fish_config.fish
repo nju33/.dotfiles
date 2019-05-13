@@ -92,6 +92,28 @@ alias docz='yarn docz'
 alias nodemonn='yarn nodemon'
 alias pm2='yarn pm2'
 
+function .env --description 'To edit a closest .env file'
+  set -l cwd (pwd)
+  if test -n "$argv[1]"
+    echo "$argv[1]"
+    set cwd "$argv[1]"
+  end
+
+  if test -f "$cwd/.env"
+    vim .env
+    return 0;
+  end
+
+  set -l parent_dir (dirname "$cwd")
+
+  if test "$parent_dir" = "/Users"
+    echo "Not found a .env file each hierarchy"
+    return 1;
+  end
+
+  .env (dirname "$cwd")
+end
+
 function reponame --description 'get a GitHub remote url by ssh'
   if test -z "$argv[1]"
     echo リポジトリ名を指定して
