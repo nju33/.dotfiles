@@ -118,6 +118,18 @@ function .env --description 'To edit a closest .env file'
   .env (dirname "$cwd")
 end
 
+function qa --description 'To access github/nju33/* quickly'
+  set -l alias_name "$argv[1]"
+  set -l target_directory "$HOME/github/nju33/$alias_name"
+
+  if test ! -d "$target_directory"
+    echo "$target_directory is not found"
+    return 1
+  end
+
+  cd "$target_directory"
+end
+
 function reponame --description 'get a GitHub remote url by ssh'
   if test -z "$argv[1]"
     echo リポジトリ名を指定して
