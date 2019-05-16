@@ -129,6 +129,7 @@ function qa --description 'To access github/nju33/* quickly'
 
   cd "$target_directory"
 end
+complete -x -c qa -d 'dirname' -a '(ls (echo "$HOME/github/nju33"))'
 
 function reponame --description 'get a GitHub remote url by ssh'
   if test -z "$argv[1]"
