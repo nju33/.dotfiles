@@ -30,12 +30,18 @@ omf install https://github.com/nju33/plugin-rmnm
 
 ### vim
 
-```bash
-$ curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh
-$ sh ./installer.sh {specify the installation directory}
+the vim-plug install
 
-vi .vimrc
-# set runtimepath+=<path until installer.sh>
+```sh
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+```
+
+the vim package can install by `:PlugInstall` command which is installed by the vim-plug.
+
+
+```sh
+:PlugInstall
 ```
 
 ### brew
