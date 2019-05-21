@@ -21,18 +21,18 @@ set incsearch
 set hlsearch
 
 syntax enable
-colorscheme onedark
 hi Normal ctermbg=none
 
-set runtimepath+=~/.vim/repos/github.com/Shougo/dein.vim
-if dein#load_state('~/.vim/repos/github.com/Shougo/dein.vim')
-  call dein#begin('~/.vim/repos/github.com/Shougo/dein.vim')
-  call dein#add('sheerun/vim-polyglot')
-  " call dein#add('scrooloose/nerdtree')
-  " call dein#add('mattn/emmet-vim')
-  " call dein#add('tpope/vim-fugitive')
-  call dein#end()
-  call dein#save_state()
-endif
-
 filetype plugin indent on
+
+call plug#begin()
+Plug 'elzr/vim-json'
+let g:vim_json_syntax_conceal = 0
+let g:syntastic_json_checkers = ['jsonlint']
+
+Plug 'mattn/sonictemplate-vim'
+let g:sonictemplate_vim_template_dir = ['~/.vim/template']
+
+call plug#end()
+
+
