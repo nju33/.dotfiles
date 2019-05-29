@@ -16,7 +16,8 @@ function chrome-dev --description 'open chrome-canary in devmode'
   /Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary --args --disable-web-security --user-data-dir
 end
 
-alias «='pwd | pbcopy'
+# option + shift + 1 = ⁄
+alias ⁄='pwd | pbcopy'
 
 alias j='jobs'
 function jk --description 'kill -9 to all background jobs'
