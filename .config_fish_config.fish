@@ -1,6 +1,7 @@
 set -Ux TZ Asia/Tokyo
 set -gx PATH {$HOME}/.cargo/bin $PATH
 set -gx PATH {$HOME}/.deno/bin $PATH
+source (pyenv init -|psub)
 set -gx LC_ALL en_US.UTF-8
 set -gx LANG en_US.UTF-8
 
