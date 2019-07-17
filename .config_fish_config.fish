@@ -9,6 +9,7 @@ set -gx PGHOST 0.0.0.0
 set -gx PGUSER postgres
 set -gx PGPORT 54321
 set -gx PGPASSWORD ''
+set -gx SPACEFISH_PACKAGE_SHOW false
 function pg_server --description 'docker run pg'
   docker run --rm -p 54321:5432 nju33/postgres
 end
