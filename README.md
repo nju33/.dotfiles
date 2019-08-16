@@ -6,6 +6,12 @@ sh lns.sh
 
 ### fish
 
+#### prepare
+
+```sh
+mkdir /home/geekcojp/.config/peco/
+```
+
 [#](https://fishshell.com/docs/current/tutorial.html)
 
 ```sh
@@ -57,6 +63,6 @@ brew bundle
 ### atom
 
 ```bash
-apm list -bi --no-dev > Apmfile  
+apm list -bi --no-dev > Apmfile
 apm install --packages-file Apmfile
 ```
