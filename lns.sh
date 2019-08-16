@@ -12,7 +12,6 @@ function run() {
     .config_fish_config.fish
     .config_peco_config.json
     .config_moza
-    .justfile
   )
   for f in ${files[@]}; do
     local src=`pwd`/$f
