@@ -6,12 +6,12 @@ function replace_to_path() {
 
 function run() {
   local files=(
-    .sshrc .sshrc.d
+    # .sshrc .sshrc.d
     .zshrc .zsh.d .vimrc .vim .gitconfig
     .agignore .hyper.js emmet
     .config_fish_config.fish
     .config_peco_config.json
-    .config_moza
+    # .config_moza
   )
   for f in ${files[@]}; do
     local src=`pwd`/$f
