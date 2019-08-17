@@ -20,6 +20,7 @@ set -gx PGPORT 54321
 set -gx PGPASSWORD ''
 set -gx SPACEFISH_PACKAGE_SHOW false
 set -gx SPACEFISH_PHP_SHOW false
+
 function pg_server --description 'docker run pg'
   docker run --rm -p 54321:5432 nju33/postgres
 end
@@ -233,3 +234,4 @@ function serveo
   end
 
 end
+

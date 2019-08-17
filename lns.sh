@@ -9,6 +9,7 @@ function run() {
     # .sshrc .sshrc.d
     .zshrc .zsh.d .vimrc .vim .gitconfig
     .agignore .hyper.js emmet
+    .config_fish_functions_remote.fish
     .config_fish_config.fish
     .config_peco_config.json
     # .config_moza
