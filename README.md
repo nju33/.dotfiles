@@ -9,7 +9,7 @@ sh lns.sh
 #### prepare
 
 ```sh
-mkdir /home/geekcojp/.config/peco/
+mkdir $HOME/.config/peco/
 ```
 
 [#](https://fishshell.com/docs/current/tutorial.html)
