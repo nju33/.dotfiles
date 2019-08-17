@@ -1,9 +1,18 @@
 set -Ux TZ Asia/Tokyo
-set -gx PATH {$HOME}/.cargo/bin $PATH
-set -gx PATH {$HOME}/.deno/bin $PATH
-source (pyenv init -|psub)
+set -gx LANGUAGE en_US.UTF-
 set -gx LC_ALL en_US.UTF-8
 set -gx LANG en_US.UTF-8
+if test (uname) = 'Linux'
+  set -gx HOMEBREW_NO_ENV_FILTERING 1
+end
+set -gx PATH {$HOME}/.cargo/bin $PATH
+set -gx PATH {$HOME}/.deno/bin $PATH
+if test (uname) = 'Darwin'
+  source (pyenv init -|psub)
+end
+if test (uname) = 'Linux' -a -e '/home/linuxbrew/.linuxbrew/bin'
+  set -gx PATH /home/linuxbrew/.linuxbrew/bin $PATH
+end
 
 set -gx PGHOST 0.0.0.0
 set -gx PGUSER postgres
