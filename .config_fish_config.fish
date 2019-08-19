@@ -5,6 +5,7 @@ set -gx LANG en_US.UTF-8
 if test (uname) = 'Linux'
   set -gx HOMEBREW_NO_ENV_FILTERING 1
 end
+set -gx PATH {$HOME}/.local/bin $PATH
 set -gx PATH {$HOME}/.cargo/bin $PATH
 set -gx PATH {$HOME}/.deno/bin $PATH
 if test (uname) = 'Darwin'
