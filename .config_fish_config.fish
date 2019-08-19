@@ -235,3 +235,9 @@ function serveo
 
 end
 
+switch (echo $USER)
+  case 'slack--nippo'
+    cd ~/github/nju33/slack--nippo
+end
+
+cd ~/github/nju33/slack--nippo
