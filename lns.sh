@@ -9,6 +9,7 @@ function run() {
     # .sshrc .sshrc.d
     .zshrc .zsh.d .vimrc .vim .gitconfig
     .agignore .hyper.js .tmux.conf emmet
+    .config_alacritty_alacritty.yml
     .config_fish_completions_remote-development.fish
     .config_fish_functions_remote-development.fish
     .config_fish_config.fish
