@@ -8,7 +8,7 @@ function run() {
   local files=(
     # .sshrc .sshrc.d
     .zshrc .zsh.d .vimrc .vim .gitconfig
-    .agignore .hyper.js emmet
+    .agignore .hyper.js .tmux.conf emmet
     .config_fish_completions_remote-development.fish
     .config_fish_functions_remote-development.fish
     .config_fish_config.fish
