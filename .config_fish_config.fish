@@ -15,7 +15,11 @@ if test (uname) = 'Linux' -a -e '/home/linuxbrew/.linuxbrew/bin'
   set -gx PATH /home/linuxbrew/.linuxbrew/bin $PATH
 end
 
-set -gx SHELL /usr/local/bin/fish
+if test -f /usr/bin/fish
+  set -gx SHELL /usr/bin/fish
+else if test -f /usr/local/bin/fish
+  set -gx SHELL /usr/local/bin/fish
+end
 
 set -gx PGHOST 0.0.0.0
 set -gx PGUSER postgres
