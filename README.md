@@ -25,12 +25,19 @@ set -x NJU33_USER_PASSWORD ...
 ### theme & plugins
 
 ```bash
-omf install eden
+git clone https://github.com/powerline/fonts --depth=1
+sh -c 'cd fonts && ./install.sh'
+# fonts
+git clone git@github.com:abertsch/Menlo-for-Powerline.git
+```
+
+```bash
+omf install spacefish
 
 # brew install peco thefuck
 # curl -L https://get.oh-my.fish | fish
 omf install peco thefuck
-omf install https://github.com/nju33/plugin-cpd
+omf install https://github.com//plugin-cpd
 omf install https://github.com/nju33/plugin-rmnm
 ```
 
