@@ -75,6 +75,8 @@ function sourcefish --description 'load ~/.config/fish/config.fish'
   source  ~/.config/fish/config.fish
 end
 
+alias tmuxks='tmux ls | cut -d\' \' -f1 | sed s/:// | peco | xargs tmux kill-session -t'
+
 alias aghtml='ag -S --html --jade'
 alias agjs='ag -S --js'
 alias agts='ag -S --ts'
@@ -239,7 +241,6 @@ function serveo
   else
     ssh -R 80:localhost:8888 serveo.net
   end
-
 end
 
 switch (echo $USER)
