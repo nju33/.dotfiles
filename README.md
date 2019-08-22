@@ -34,6 +34,11 @@ git clone git@github.com:abertsch/Menlo-for-Powerline.git
 ```bash
 omf install spacefish
 
+# for linux
+if test (uname -s) = 'Linux'
+  apt install peco -y
+end
+
 # brew install peco thefuck
 # curl -L https://get.oh-my.fish | fish
 omf install peco thefuck
