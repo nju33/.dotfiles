@@ -77,6 +77,10 @@ end
 
 alias tmuxks='tmux ls | cut -d\' \' -f1 | sed s/:// | peco | xargs tmux kill-session -t'
 
+if test (uname) = 'Darwin'; and which gsed >/dev/null
+  alias sed=gsed
+end
+
 alias aghtml='ag -S --html --jade'
 alias agjs='ag -S --js'
 alias agts='ag -S --ts'
