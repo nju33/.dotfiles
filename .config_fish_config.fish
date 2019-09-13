@@ -21,6 +21,17 @@ else if test -f /usr/local/bin/fish
   set -gx SHELL /usr/local/bin/fish
 end
 
+if which starship > /dev/null
+  eval (starship init fish)
+else
+  if test (uname) = 'Darwin'
+    echo 'starship is not installed yet'
+    echo '& berw install starship'
+  else
+    echo 'starship is not installed yet'
+  end
+end
+
 set -gx PGHOST 0.0.0.0
 set -gx PGUSER postgres
 set -gx PGPORT 54321
