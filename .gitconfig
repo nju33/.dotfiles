@@ -74,7 +74,7 @@
   # atom13 = "!f() { git ls-files --modified | sed -n 13p; }; [ -z '`f`'] && atom `f`"
   # atom14 = "!f() { git ls-files --modified | sed -n 14p; }; [ -z '`f`'] && atom `f`"
   # atom15 = "!f() { git ls-files --modified | sed -n 15p; }; [ -z '`f`'] && atom `f`"
-  uisk = update-index --skip-worktree
-  uinsk = update-index --no-skip-worktree
+  uisk = "!f() { git update-index --skip-worktree `find . -type f -name $1` && git ls-files -v `find . -type f -name $1`; }; f"
+  uisk = "!f() { git update-index --no-skip-worktree `find . -type f -name $1` && git ls-files -v `find . -type f -name $1`; }; f"
 [core]
   editor = code --wait
