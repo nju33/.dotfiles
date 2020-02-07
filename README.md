@@ -46,6 +46,10 @@ omf install https://github.com//plugin-cpd
 omf install https://github.com/nju33/plugin-rmnm
 ```
 
+```shell
+curl -fsSL https://starship.rs/install.sh | bash
+```
+
 ### vim
 
 the vim-plug install
@@ -56,7 +60,6 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 ```
 
 the vim package can install by `:PlugInstall` command which is installed by the vim-plug.
-
 
 ```sh
 :PlugInstall
