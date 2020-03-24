@@ -7,6 +7,7 @@ function replace_to_path() {
 function run() {
   local files=(
     # .sshrc .sshrc.d
+    .bashrc .bash_profile
     .zshrc .zsh.d .vimrc .vim .gitconfig
     .agignore .hyper.js .tmux.conf emmet
     .config_alacritty_alacritty.yml

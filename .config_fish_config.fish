@@ -262,3 +262,6 @@ switch (echo $USER)
   case 'slack--nippo'
     cd ~/github/nju33/slack--nippo
 end
+
+set -x YVM_DIR /Users/nju33/.yvm
+[ -r $YVM_DIR/yvm.fish ]; and source $YVM_DIR/yvm.fish

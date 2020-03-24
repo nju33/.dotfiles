@@ -213,3 +213,6 @@ if [[ $? == 0 ]] {
 }
 
 [ -e ~/.zshrc.local ] && source ~/.zshrc.local
+
+export YVM_DIR=/Users/nju33/.yvm
+[ -r $YVM_DIR/yvm.sh ] && . $YVM_DIR/yvm.sh
