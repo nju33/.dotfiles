@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 function replace_to_path() {
   echo $1 | sed 's/_/\//g'
