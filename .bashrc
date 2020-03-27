@@ -30,3 +30,37 @@ alias nodemon='yarn nodemon'
 alias pm2='yarn pm2'
 alias docsify='yarn docsify'
 alias docz='yarn docz'
+
+_yarn_completion() {
+  local yarn_options=""
+  local yarn_commands=""
+  local run_scripts=""
+
+  if [[ "$2" =~ ^- ]]; then
+    yarn_options=$(yarn --help | grep Commands -B 50 | grep -- -- | sed -e "s/-., //" | sed -E 's/.*(--[a-z-]+).*/\1/')
+    COMPREPLY=($(compgen -W "$yarn_options" -- "${COMP_WORDS[COMP_CWORD]}"))
+    return 0
+  fi
+
+  yarn_commands=$(yarn --help | grep Commands -A40 | grep - | sed 's/-\s\([a-z-]\+\).*/\1/' | xargs)
+  run_scripts=""
+
+  if [ -e "package.json" ]; then
+    run_scripts=$(node -p "Object.keys(require('./package.json').scripts).join(' ')")
+  fi
+
+  case "$3" in
+  yarn)
+    COMPREPLY=($(compgen -W "$yarn_commands $run_scripts" -- "${COMP_WORDS[COMP_CWORD]}"))
+    ;;
+  install)
+    COMPREPLY=($(compgen -W "--frozen-lockfile --ignore-scripts" -- "${COMP_WORDS[COMP_CWORD]}"))
+    ;;
+  run)
+    COMPREPLY=($(compgen -W "$run_scripts" -- "${COMP_WORDS[COMP_CWORD]}"))
+    ;;
+  *) ;;
+
+  esac
+}
+complete -o default -F _yarn_completion yarn
