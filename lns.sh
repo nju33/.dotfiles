@@ -17,9 +17,17 @@ function run() {
     .config_peco_config.json
     # .config_moza
   )
-  for f in ${files[@]}; do
-    local src=`pwd`/$f
-    local dest=~/`replace_to_path $f`
+  for file in "${files[@]}"; do
+    local src
+    local dest
+
+    src="$(pwd)/$file"
+    dest="$HOME/$file"
+
+    if [ "$file" != ".bash_profile" ]; then
+      dest="$HOME/$(replace_to_path $file)"
+    fi
+
     echo "$src -> $dest"
     rm -rf $dest; ln -s $src $dest
   done
