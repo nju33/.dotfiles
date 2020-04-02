@@ -12,6 +12,6 @@ export PATH="$HOME/.deno/bin:$PATH"
 export PATH="/usr/local/opt/php@7.1/bin:$PATH"
 export PATH="/usr/local/opt/php@7.1/sbin:$PATH"
 
-if [ "$(uname)" == 'Darwin' ]; then
-  source ~/.bashrc
+if [ -f "$HOME/.bashrc" ]; then
+  . ~/.bashrc
 fi
