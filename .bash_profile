@@ -1,5 +1,5 @@
-LANG=ja_JP.UTF-8
-LC_TYPE=ja_JP.UTF-8
+export LANG=ja_JP.UTF-8
+export LC_TYPE=ja_JP.UTF-8
 
 if [ "$(uname)" == 'Darwin' ]; then
   # for Catalina
