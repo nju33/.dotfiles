@@ -54,6 +54,15 @@ if command -v starship > /dev/null; then
   eval "$(starship init bash)"
 fi
 
+GPG_TTY=$(tty)
+export GPG_TTY
+
+# for i-search 
+# " stty -a
+# " stop = ^S;
+stty stop undef
+stty start undef
+
 alias npm-run-all='yarn npm-run-all'
 alias run-s='yarn run-s'
 alias run-p='yarn run-p'
@@ -111,3 +120,4 @@ _yarn_completion() {
   esac
 }
 complete -o default -F _yarn_completion yarn
+

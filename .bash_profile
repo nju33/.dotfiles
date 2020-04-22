@@ -15,3 +15,4 @@ export PATH="/usr/local/opt/php@7.1/sbin:$PATH"
 if [ -f "$HOME/.bashrc" ]; then
   . ~/.bashrc
 fi
+
