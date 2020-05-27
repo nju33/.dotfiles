@@ -57,7 +57,23 @@ fi
 GPG_TTY=$(tty)
 export GPG_TTY
 
-# for i-search 
+# for the ssh-agent on tmux
+if [ "$(uname)" = "Linux" ]; then
+  agent="$HOME/.ssh/agent"
+  if [ -S "$SSH_AUTH_SOCK" ]; then
+    case $SSH_AUTH_SOCK in
+    /tmp/*/agent.[0-9]*)
+      ln -snf "$SSH_AUTH_SOCK" $agent && export SSH_AUTH_SOCK=$agent
+      ;;
+    esac
+  elif [ -S $agent ]; then
+    export SSH_AUTH_SOCK=$agent
+  else
+    echo "no ssh-agent"
+  fi
+fi
+
+# for i-search
 # " stty -a
 # " stop = ^S;
 stty stop undef

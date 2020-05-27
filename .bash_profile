@@ -16,3 +16,7 @@ if [ -f "$HOME/.bashrc" ]; then
   . ~/.bashrc
 fi
 
+if [ -d "$HOME/.asdf" ]; then
+  . $HOME/.asdf/asdf.sh
+  . $HOME/.asdf/completions/asdf.bash
+fi
