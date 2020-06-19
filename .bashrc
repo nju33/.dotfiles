@@ -54,6 +54,14 @@ if command -v starship > /dev/null; then
   eval "$(starship init bash)"
 fi
 
+chrome() {
+  /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --enable-audio-service-sandbox --flag-switches-begin --enable-quic --flag-switches-end --enable-audio-service-sandbox --renderer-process-limit=5 > /dev/null 2>&1 &
+}
+
+chrome_canary() {
+  /Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary --flag-switches-begin --allow-insecure-localhost --flag-switches-end --enable-audio-service-sandboxa --renderer-process-limit=2 > /dev/null 2>&1 &
+}
+
 GPG_TTY=$(tty)
 export GPG_TTY
 
