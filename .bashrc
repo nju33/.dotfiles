@@ -59,7 +59,7 @@ chrome() {
 }
 
 chrome_canary() {
-  /Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary --flag-switches-begin --allow-insecure-localhost --flag-switches-end --enable-audio-service-sandboxa --renderer-process-limit=2 > /dev/null 2>&1 &
+  /Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary --flag-switches-begin --allow-insecure-localhost --flag-switches-end --enable-audio-service-sandbox --renderer-process-limit=2 > /dev/null 2>&1 &
 }
 
 GPG_TTY=$(tty)
