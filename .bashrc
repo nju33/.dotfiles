@@ -1,7 +1,7 @@
 # If not running interactively, don't do anything
 case $- in
-  *i*) ;;
-    *) return;;
+*i*) ;;
+*) return ;;
 esac
 
 # don't put duplicate lines or lines starting with space in the history.
@@ -44,22 +44,22 @@ if ! shopt -oq posix; then
 fi
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
 export YVM_DIR="$HOME/.yvm"
 [ -r $YVM_DIR/yvm.sh ] && . "$YVM_DIR/yvm.sh"
 
-if command -v starship > /dev/null; then
+if command -v starship >/dev/null; then
   eval "$(starship init bash)"
 fi
 
 chrome() {
-  /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --enable-audio-service-sandbox --flag-switches-begin --enable-quic --flag-switches-end --enable-audio-service-sandbox --renderer-process-limit=5 > /dev/null 2>&1 &
+  /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --enable-audio-service-sandbox --flag-switches-begin --enable-quic --flag-switches-end --enable-audio-service-sandbox --renderer-process-limit=5 >/dev/null 2>&1 &
 }
 
 chrome_canary() {
-  /Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary --flag-switches-begin --allow-insecure-localhost --flag-switches-end --enable-audio-service-sandbox --renderer-process-limit=2 > /dev/null 2>&1 &
+  /Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary --flag-switches-begin --allow-insecure-localhost --flag-switches-end --enable-audio-service-sandbox --renderer-process-limit=2 >/dev/null 2>&1 &
 }
 
 GPG_TTY=$(tty)
@@ -145,3 +145,10 @@ _yarn_completion() {
 }
 complete -o default -F _yarn_completion yarn
 
+_code_completion() {
+  # local current="${COMP_WORDS[COMP_CWORD]}"
+  # local files="$(ls -tr "$(dirname current)")"
+  local files="$(rg -l . -g "!*.md" -g"!*/index.ts")"
+  COMPREPLY=($(compgen -W "$files" -- "${COMP_WORDS[COMP_CWORD]}"))
+}
+complete -o default -F _code_completion code
