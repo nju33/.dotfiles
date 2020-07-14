@@ -15,6 +15,7 @@ function run() {
     .config_fish_functions_remote-development.fish
     .config_fish_config.fish
     .config_peco_config.json
+    .config_starship.toml
     # .config_moza
   )
   for file in "${files[@]}"; do
@@ -29,7 +30,8 @@ function run() {
     fi
 
     echo "$src -> $dest"
-    rm -rf $dest; ln -s $src $dest
+    rm -rf $dest
+    ln -s $src $dest
   done
 }
 run
