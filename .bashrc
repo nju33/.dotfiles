@@ -152,3 +152,13 @@ _code_completion() {
   COMPREPLY=($(compgen -W "$files" -- "${COMP_WORDS[COMP_CWORD]}"))
 }
 complete -o default -F _code_completion code
+
+_tmux_completion() {
+  if [ "$3" = "-t" ]; then
+    local sessions="$(tmux ls | cut -d: -f1)"
+    COMPREPLY=($(compgen -W "$sessions" -- "${COMP_WORDS[COMP_CWORD]}"))
+  else
+    COMPREPLY=()
+  fi
+}
+complete -o default -F _tmux_completion tmux
