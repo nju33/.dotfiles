@@ -54,14 +54,6 @@ if command -v starship >/dev/null; then
   eval "$(starship init bash)"
 fi
 
-<<<<<<< HEAD
-chrome() {
-  /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --enable-audio-service-sandbox --flag-switches-begin --enable-quic --flag-switches-end --enable-audio-service-sandbox --renderer-process-limit=5 >/dev/null 2>&1 &
-}
-
-chrome_canary() {
-  /Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary --flag-switches-begin --allow-insecure-localhost --flag-switches-end --enable-audio-service-sandbox --renderer-process-limit=2 >/dev/null 2>&1 &
-=======
 devch() {
   local params=''
   local temp="$(mktemp -d -t 'chrome-remote_data_dir')"
@@ -105,7 +97,6 @@ devch() {
     --enable-audio-service-sandbox \
     --renderer-process-limit=2
   set +x
->>>>>>> fix: update bashrc
 }
 
 GPG_TTY=$(tty)
@@ -190,7 +181,6 @@ _yarn_completion() {
   esac
 }
 complete -o default -F _yarn_completion yarn
-<<<<<<< HEAD
 
 _code_completion() {
   # local current="${COMP_WORDS[COMP_CWORD]}"
@@ -209,5 +199,3 @@ _tmux_completion() {
   fi
 }
 complete -o default -F _tmux_completion tmux
-=======
->>>>>>> fix: update bashrc
