@@ -95,7 +95,8 @@ devch() {
     --allow-insecure-localhost \
     --flag-switches-end \
     --enable-audio-service-sandbox \
-    --renderer-process-limit=2
+    --renderer-process-limit=2 \
+    --disable-web-security
   set +x
 }
 
