@@ -54,12 +54,50 @@ if command -v starship >/dev/null; then
   eval "$(starship init bash)"
 fi
 
-chrome() {
-  /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --enable-audio-service-sandbox --flag-switches-begin --enable-quic --flag-switches-end --enable-audio-service-sandbox --renderer-process-limit=5 >/dev/null 2>&1 &
-}
+devch() {
+  local params=''
+  local temp="$(mktemp -d -t 'chrome-remote_data_dir')"
+  local user_data_dir="$temp"
+  local remote_debugging_port=9222
 
-chrome_canary() {
-  /Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary --flag-switches-begin --allow-insecure-localhost --flag-switches-end --enable-audio-service-sandbox --renderer-process-limit=2 >/dev/null 2>&1 &
+  trap "rm $temp; exit 1" 1 2 3 15
+
+  while (( "$#" )); do
+    case "$1" in
+      -p|--remote-debugging-port)
+        remote_debugging_port="$2"
+        shift 2
+        ;;
+      -d|--user_data_dir)
+        rm "$temp"
+        mkdir -p "$HOME/.devch/$2"
+        user_data_dir="$HOME/.devch/$2"
+        shift 2
+        ;;
+      -*|--*)
+        echo "Error: Unsupported flag $1" >&2
+        return 1
+        ;;
+      *)
+        params="$params $1"
+        shift
+        ;;
+    esac
+  done
+
+  set -x
+  /Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary \
+    --user-data-dir="$user_data_dir" \
+    --remote-debugging-port="$remote_debugging_port" \
+    --no-first-run \
+    --no-default-browser-check \
+    --flag-switches-begin \
+    --allow-insecure-localhost \
+    --flag-switches-end \
+    --enable-audio-service-sandbox \
+    --renderer-process-limit=2 \
+    --disable-web-security
+  set +x
 }
 
 GPG_TTY=$(tty)
