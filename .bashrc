@@ -110,6 +110,7 @@ alias nodemon='yarn nodemon'
 alias pm2='yarn pm2'
 alias docsify='yarn docsify'
 alias docz='yarn docz'
+alias bit='yarn bit'
 
 _yarn_completion() {
   local yarn_options=""
