@@ -16,7 +16,6 @@ function run() {
     .config_fish_config.fish
     .config_peco_config.json
     .config_starship.toml
-    # .config_moza
   )
   for file in "${files[@]}"; do
     local src
