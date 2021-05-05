@@ -24,6 +24,7 @@ function run() {
     # .config_fish_config.fish
     .config_peco_config.json
     .config_starship.toml
+    init.el
   )
   for file in "${files[@]}"; do
     local src
