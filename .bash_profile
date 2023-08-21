@@ -16,7 +16,10 @@ if [ -f "$HOME/.bashrc" ]; then
   . ~/.bashrc
 fi
 
+eval $(/opt/homebrew/bin/brew shellenv)
+
 if [ -d "$HOME/.asdf" ]; then
-  . $HOME/.asdf/asdf.sh
-  . $HOME/.asdf/completions/asdf.bash
+  . $(brew --prefix asdf)/libexec/asdf.sh
+  . $(brew --prefix asdf)/etc/bash_completion.d/asdf.bash
+fi
 fi
