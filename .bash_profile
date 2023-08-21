@@ -7,7 +7,6 @@ if [ "$(uname)" == 'Darwin' ]; then
 fi
 
 export PATH="$HOME/.local/bin:$PATH"
-export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.deno/bin:$PATH"
 export PATH="/usr/local/opt/php@7.1/bin:$PATH"
 export PATH="/usr/local/opt/php@7.1/sbin:$PATH"
@@ -22,4 +21,7 @@ if [ -d "$HOME/.asdf" ]; then
   . $(brew --prefix asdf)/libexec/asdf.sh
   . $(brew --prefix asdf)/etc/bash_completion.d/asdf.bash
 fi
+
+if [ -d "$HOME/.cargo" ]; then
+  . "$HOME/.cargo/env"
 fi
