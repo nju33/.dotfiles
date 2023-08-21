@@ -1,6 +1,5 @@
-[user]
-  name = nju33
-  email = nju33.ki@gmail.com
+[push]
+  default = simple
 [alias]
   s = status
   ow = show
@@ -59,5 +58,3 @@
   add-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
   uisk = "!f() { F=$(find . -type d -name .git -prune -or -type d -name node_modules -prune -or -name $1 -print); git update-index --skip-worktree $F && git ls-files -v $F; }; f"
   uinsk = "!f() { F=$(find . -type d -name .git -prune -or -type d -name node_modules -prune -or -name $1 -print); git update-index --no-skip-worktree $F && git ls-files -v $F; }; f"
-[core]
-  editor = code --wait

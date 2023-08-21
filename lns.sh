@@ -6,17 +6,25 @@ function replace_to_path() {
 
 function run() {
   local files=(
-    # .sshrc .sshrc.d
-    .bashrc .bash_profile
-    .zshrc .zsh.d .vimrc .vim .gitconfig
-    .agignore .hyper.js .tmux.conf emmet
+    .bashrc
+    .bash_profile
+    .bash_aliases
+    # .zshrc
+    # .zsh.d
+    .vimrc
+    .vim
+    .gitconfig
+    .agignore
+    # .hyper.js
+    .tmux.conf
+    # emmet
     .config_alacritty_alacritty.yml
-    .config_fish_completions_remote-development.fish
-    .config_fish_functions_remote-development.fish
-    .config_fish_config.fish
+    # .config_fish_completions_remote-development.fish
+    # .config_fish_functions_remote-development.fish
+    # .config_fish_config.fish
     .config_peco_config.json
     .config_starship.toml
-    # .config_moza
+    init.el
   )
   for file in "${files[@]}"; do
     local src
