@@ -47,9 +47,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
-export YVM_DIR="$HOME/.yvm"
-[ -r $YVM_DIR/yvm.sh ] && . "$YVM_DIR/yvm.sh"
-
 if command -v starship >/dev/null; then
   eval "$(starship init bash)"
 fi
@@ -148,7 +145,6 @@ alias nodemon='yarn nodemon'
 alias pm2='yarn pm2'
 alias docsify='yarn docsify'
 alias docz='yarn docz'
-alias bit='yarn bit'
 
 _yarn_completion() {
   local yarn_options=""
