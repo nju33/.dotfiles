@@ -37,6 +37,7 @@ _init_bash_completion() {
 _init_bash_completion
 
 export NAVI_PATH="$HOME/.local/share/navi/cheats"
+[ -f "$HOME/.deno/env" ] && source "$HOME/.deno/env"
 
 # In advance, an environment where `.dotfiles` cloned has been had
 export DOTFILES_LOCATION_DIRECTORY="$HOME/.dotfiles"
