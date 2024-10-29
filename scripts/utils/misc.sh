@@ -8,6 +8,7 @@ show_help() {
     cat <<EOT
 $comm:
     gen:
+        exf: \`$comm gen exf\`
         fifo: \`$comm gen fifo\`
         random: \`$comm gen random\`
         ref: \`$comm gen ref\`
@@ -43,6 +44,10 @@ main() {
 
 gen() {
     case "$1" in
+    exf)
+        shift
+        "${0%/*}"/misc/gen/exf.sh "$@"
+        ;;
     fifo)
         shift
         "${0%/*}"/misc/gen/fifo.sh "$@"

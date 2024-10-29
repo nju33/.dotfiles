@@ -4,7 +4,7 @@ _misc_completion() {
     if [ "$COMP_CWORD" -eq 2 ]; then
         case "$3" in
         gen)
-            mapfile -t COMPREPLY < <(compgen -W "random ref temp_file" -- "${COMP_WORDS[COMP_CWORD]}")
+            mapfile -t COMPREPLY < <(compgen -W "exf random ref temp_file" -- "${COMP_WORDS[COMP_CWORD]}")
             ;;
         print)
             mapfile -t COMPREPLY < <(compgen -W "env" -- "${COMP_WORDS[COMP_CWORD]}")
