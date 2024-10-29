@@ -1,0 +1,24 @@
+#!/bin/sh
+
+BATS_RESULT_IS_FAILURE=10
+
+git stash -q --keep-index
+
+tests=$(git diff --staged --name-only --diff-filter ACMR | grep -E '\.bats$')
+# shellcheck disable=SC2086
+[ -z "$tests" ] || test/bats/bin/bats $tests
+status=$?
+
+git stash pop -q
+
+if [ "$status" -gt 0 ]; then
+    exec 1>&2
+    # shellcheck disable=SC2086
+    cat <<EOT
+abort: the result of the bats tests, which are staging, have failed
+
+<tests>:
+$(git diff --staged --name-status -- $tests)
+EOT
+    exit $BATS_RESULT_IS_FAILURE
+fi

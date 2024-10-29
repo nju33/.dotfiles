@@ -1,83 +1,47 @@
-### dotfiles
+# .dotfiles
+
+This environment assumed that is depending on the under tools:
+
+- [Homebrew](https://brew.sh)
+- [Git](https://git-scm.com)
+- [Alacritty](https://alacritty.org)
+- [Starship](https://starship.rs)
+- [Prettier](https://prettier.io)
+- [tmux](https://github.com/tmux/tmux/wiki)
+- [nvm](https://github.com/nvm-sh/nvm)
+- [fzf](https://github.com/junegunn/fzf)
+- [ripgrep](https://github.com/BurntSushi/ripgrep)
+- [EditorConfig](https://editorconfig.org)
+- [SchellCheck](https://www.shellcheck.net)
+- [Navi](https://github.com/denisidoro/navi)
+- …
+
+I really appreciate these tools and around the people involved in them.
+
+## Setup
+
+### Bash
+
+1. When cloned in a location other than `$HOME/.dotfiles`, the `DOTFILES_LOCATION_DIRECTORY` environment variable, which is declared in the `src/.bash_profile` file, needs to be modified to the actual path.
+2. Create symbolic links to each `src/.bash_profile` and `src/.bashrc` as these steps:  
+  ```bash
+  ln -s '<path/to>/src/.bash_profile' "$HOME/.bash_profile"
+  ln -s '<path/to>/src/.bashrc' "$HOME/.bashrc"
+  ```
+3. All is done. you then just login by establishing new terminal session.
+
+### Homebrew
+
+All of necessary is the command below just run in the <project_root>/:
 
 ```bash
-sh lns.sh
-```
-
-### fish
-
-#### prepare
-
-```sh
-mkdir $HOME/.config/peco/
-```
-
-[#](https://fishshell.com/docs/current/tutorial.html)
-
-```sh
-touch ~/.config/fish/conf.d/nju33.fish
-```
-
-```
-set -x NJU33_USER_PASSWORD ...
-```
-
-### theme & plugins
-
-```bash
-git clone https://github.com/powerline/fonts --depth=1
-sh -c 'cd fonts && ./install.sh'
-# fonts
-git clone git@github.com:abertsch/Menlo-for-Powerline.git
-```
-
-```bash
-omf install spacefish
-
-# for linux
-if test (uname -s) = 'Linux'
-  apt install peco -y
-end
-
-# brew install peco thefuck
-# curl -L https://get.oh-my.fish | fish
-omf install peco thefuck
-omf install https://github.com//plugin-cpd
-omf install https://github.com/nju33/plugin-rmnm
-```
-
-```shell
-curl -fsSL https://starship.rs/install.sh | bash
-```
-
-### vim
-
-the vim-plug install
-
-```sh
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-```
-
-the vim package can install by `:PlugInstall` command which is installed by the vim-plug.
-
-```sh
-:PlugInstall
-```
-
-### brew
-
-https://github.com/Homebrew/homebrew-bundle
-
-```bash
-# brew tap Homebrew/bundle
-brew bundle dump [-f]
 brew bundle
 ```
 
-### atom
+## Particular cheat of Navi
+
+The commands shown above also are able to comfirm and execute by Navi like to the below:
 
 ```bash
-apm list -bi --no-dev > Apmfile
-apm install --packages-file Apmfile
+navi --path .dotfiles.cheat --query readme
 ```

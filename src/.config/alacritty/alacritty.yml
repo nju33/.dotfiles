@@ -1,0 +1,51 @@
+# Window configuration
+window:
+    # Treat both Option keys as Alt on macOS
+    option_as_alt: Both
+    # Hide the title menu of
+    decorations: none
+    padding:
+        x: 10
+        y: 10
+    dimensions:
+        columns: 193 # the value by `tput cols`
+        lines: 58 # the value by `tput lines`
+
+# Font configuration
+font:
+    normal:
+        family: Hack Nerd Font
+        style: Regular
+    bold:
+        family: Hack Nerd Font
+        style: Bold
+    italic:
+        family: Hack Nerd Font
+        style: Italic
+    bold_italic:
+        family: Hack Nerd Font
+        style: Bold Italic
+    size: 12.0
+
+# Key bindings
+key_bindings:
+    # Alt + letter keys
+    - { key: A, mods: Alt, chars: "\x1ba" }
+    - { key: B, mods: Alt, chars: "\x1bb" }
+    - { key: C, mods: Alt, chars: "\x1bc" }
+    - { key: D, mods: Alt, chars: "\x1bd" }
+    - { key: E, mods: Alt, chars: "\x1be" }
+    - { key: F, mods: Alt, chars: "\x1bf" }
+
+    # Navigation
+    - { key: Left, mods: Alt, chars: "\x1bb" } # Word left
+    - { key: Right, mods: Alt, chars: "\x1bf" } # Word right
+
+keyboard:
+    enable_csi_u_key_encoding: true
+
+mouse:
+    hide_when_typing: false
+
+selection:
+    save_to_clipboard: true

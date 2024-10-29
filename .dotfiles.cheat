@@ -1,0 +1,16 @@
+% readme, brew
+# Install Homebrew fomulas
+brew bundle
+
+% readme, bash, .bash_profile
+# create symbolic link towards .bashrc
+ln -s '<path_to_location_of_dotfiles>/src/.bash_profile' "$HOME/.bash_profile"
+
+% readme, bash, .bashrc
+# create symbolic link towards .bashrc
+ln -s '<path_to_location_of_dotfiles>/src/.bashrc' "$HOME/.bashrc"
+
+$ path_to_location_of_dotfiles: printf "%s"$'\n'"%s" "$(pwd)" "$HOME"/.dotfiles
+
+% test, bats
+find scripts -name *.bats -exec test/bats/bin/bats {} +

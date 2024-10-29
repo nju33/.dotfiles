@@ -1,0 +1,43 @@
+# This display like ` {3}` that means I'm being on 4th layer of bash.
+#
+# Useful nth-shell as leveraging a feature that looks like shadowing is called
+# in Rust; this custom stands out that circumstances.
+[custom.deepbash]
+when = "true"
+command = """
+main() {
+    local level=0 current_pid=$$
+
+    while [[ $current_pid -ne 1 ]]; do
+        local parent_pid=$(ps -o ppid= -p "$current_pid")
+        local parent_command=$(ps -o comm= -p "$parent_pid")
+
+        [[ $parent_command =~ bash$ ]] && ((level++))
+        current_pid=$parent_pid
+    done
+
+    # If `$level` is set to `1`, 1 then will be subtracted to represent
+    # the initial bash.
+    [[ $level -gt 1 ]] && printf " {%s}" "$(($level - 1))"
+}
+main
+"""
+style = "#48b353"
+
+# Print current disposable variables if those exsting
+[custom."print disposable vars"]
+when = "[ -n \"$_disposable_exports\" ]"
+format = "\n[$output]($style)"
+command = "awk -v RS=';' '{print}' <<< \"$_disposable_exports\""
+style = "#aa7942"
+
+[custom.memorization]
+# A situation where the `when` becomes true:
+#   1. I'm not working on tmux
+#   2. I'm not working on VSCode's built-in terminal
+#   3. `~/.custom.memorization.md` exists
+when = "[[ ! -n $TMUX ]] && [[ ! $TERM_PROGRAM = \"vscode\" ]] && [ -r ~/.custom.memorization.md ]"
+symbol = " .custom.memorization.md; edit it with 󰧚 ``ecm``"
+format = "\n[$symbol\n($output)]($style)"
+command = "source ~/.bash_aliases && _custom_memorization"
+style = "#898989"

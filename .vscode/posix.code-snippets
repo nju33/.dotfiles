@@ -1,0 +1,12 @@
+{
+    "Call the main function": {
+        "body": [
+            "if echo \"\\$0\" | grep -qE '\\.sh$'; then",
+            "\tmain$1",
+            "fi"
+        ],
+        "description": "Call the main function",
+        "prefix": "callmain",
+        "scope": "shellscript"
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Run bats test",
+            "group": "test",
+            "type": "shell",
+            "command": "${workspaceFolder}/test/bats/bin/bats ${relativeFileDirname}/${fileBasenameNoExtension}.bats",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            }
+        }
+    ]
+}

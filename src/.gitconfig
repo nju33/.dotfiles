@@ -1,0 +1,101 @@
+[alias]
+upkeep-branches = !~/.dotfiles/scripts/git/upkeep-branches.sh
+upkeep = !bash -c 'git gc --aggressive; git ft --prune; git upkeep-branches'
+fr = filter-repo
+frdelfile = !bash -c 'git fr --path ${1?fatal: a path as the first argv is required} --invert-paths' --
+frrep = !bash -c 'git fr --${1?fatal: a method as the first argv is required}-callback \"return message.replace(b\\\"${2?fatal: a old value as the second argv is required}\\\", b\\\"${3?fatal: a new value as the third argv is required}\\\")\"' --
+frrepmsg = !bash -c 'git frrep message $@' --
+cloner = clone --recursive
+init-hook = !~/.dotfiles/scripts/git/init-hook.sh
+init-bats = !~/.dotfiles/scripts/git/init-bats.sh
+ls-alias = config --get-regexp ^alias
+as = !bash -c 'git config set --local alias."${1?name}" ${2?alias}' --
+xas = !bash -c 'git config --local --get-regexp ^alias | fzf | cut -d\" \" -f1 | xargs -I{} sh -c \"set -x && git config unset --local {}\"'
+# case-sensitive: `git ls` interpreted as `git ls-files`, `git lS` interpreted as `git ls-files -v`
+ls = !bash -c 'c=\"$(ps -p $PPID -o command= | cut -d\" \" -f2)\" && ( [[ $c == \"ls\" ]] && git ls-files ) || ( [[ $c == \"lS\" ]] && git ls-files -v )'
+lsi = ls-files --others
+p = push
+pu = push --set-upstream
+pfl = push --force-with-lease
+pt = push --tags
+ll = pull
+llr = pull --rebase
+ft = fetch
+sync = !bash -c 'git ft ${2-origin} && git reset --hard ${2-origin}/${1-main} && git clean -fd' --
+# case-sensitive: `git s` interpreted as `git status --short`, `git S` interpreted as `git status`
+s = !bash -c 'c=\"$(ps -p $PPID -o command= | cut -d\" \" -f2)\" && ( [[ $c == \"s\" ]] && git status --short \"$@\" ) || ( [[ $c == \"S\" ]] && git status \"$@\")' --
+# case-sensitive: `git a` interpreted as `git add`, `git A` interpreted as `git add --all`
+a = !bash -c 'c=\"$(ps -p $PPID -o command= | cut -d\" \" -f2)\" && ( [[ $c == \"a\" ]] && git add ${1?fatal: you must specify path(s) to add} ) || ( [[ $c == \"A\" ]] && git add --all )' --
+all = add --all
+ap = add --patch
+b = branch
+bm = branch --merged
+bmi = branch --no-merged
+sw = switch
+us = restore --staged
+# case-sensitive: `git c` interpreted as `git commit`, `git C` interpreted as `git commit --message`
+c = !bash -c 'c=\"$(ps -p $PPID -o command= | cut -d\" \" -f2)\" && ( [[ \"$c\" == \"c\" ]] && git commit \"$@\") || ( [[ \"$c\" == \"C\" ]] && git commit --message \"$@\")' --
+ca = commit --amend
+logbyhars = !bash -c 'git log --color=always --pretty=format:\"%C(yellow)%H%C(reset) %C(cyan)%ar%C(reset) %s\"'
+# TODO! turn the current fzf preview into the result of `git diff`
+soft = !bash -c '[ -n \"$1\" ] && git reset --soft \"$1\" || git logbyhars | tail -n+2 | fzf --ansi --preview \"echo -n git reset --soft {1}\" | cut -d\" \" -f1 | xargs -I{} git reset --soft {}' --
+squash = !bash -c 'git logbyhars | fzf --ansi --preview \"echo -n git commit --squash {1}\" | cut -d\" \" -f1 | xargs -I{} git c --squash {} --no-edit'
+fixup = !bash -c 'git logbyhars | fzf --ansi --preview \"echo -n git commit --fixup {1}\" | cut -d\" \" -f1 | xargs -I{} git c --fixup {} --no-edit'
+autosquash = !bash -c 'git logbyhars | fzf --ansi --preview \"echo -n git rebase -i --autosquash {1}\" | cut -d\" \" -f1 | GIT_SEQUENCE_EDITOR=true xargs -I{} git rebase -i --autosquash {}'
+cm0s= commit --allow-empty --allow-empty-message
+allc = !bash -c 'git A && [ -n \"$1\" ] && git C \"$1\" || git c --amend --no-edit' --
+allcc = !bash -c 'git A && git c --reuse-message=${1-"$(git rev-parse HEAD)"}' --
+# case-sensitive: `git t` interpreted as `git tag`, `git T` interpreted as `git tag -a`
+t = !bash -c 'c=\"$(ps -p $PPID -o command= | cut -d\" \" -f2)\" && ( [[ \"$c\" == \"t\" ]] && git tag \"$@\") || ( [[ \"$c\" == \"T\" ]] && git tag -a \"$@\")' --
+tlssv = tag -l "v*"
+sh = show
+st = !~/.dotfiles/scripts/git/statf.sh
+# case-sensitive: `git l` interpreted as like `git log --pretty=oneline`, `git D` interpreted as `git log --pretty=short`
+l = !bash -c 'c=\"$(ps -p $PPID -o command= | cut -d\" \" -f2)\" && ( [[ \"$c\" == \"l\" ]] && git log --pretty=format:\"$(git frget logmyoneline)\" \"$@\") || ( [[ \"$c\" == \"L\" ]] && git log --pretty=fuller \"$@\")' --
+lmea = !bash -c 'c=\"$(ps -p $PPID -o command= | cut -d\" \" -f2)\" && git ${c::1} --author=\"$(git config get user.email)\" \"$@\"' --
+lmec = !bash -c 'c=\"$(ps -p $PPID -o command= | cut -d\" \" -f2)\" && git ${c::1} --committer=\"$(git config get user.email)\" \"$@\"' --
+lf = !bash -c 'git l --color=always | fzf --ansi --preview-window right:60%:wrap --preview \"git show --color=always {1}\" --bind \"ctrl-d:preview-half-page-down,ctrl-u:preview-half-page-up\" | cut -d\" \" -f1'
+lps = log --patch -S
+lgrep = !bash -c 'git log --grep="${1?fatal: a pattern as the first argv is required}"' --
+# case-sensitive: `git d` interpreted as `git diff`, `git D` interpreted as `git diff --staged`
+d = !bash -c 'c=\"$(ps -p $PPID -o command= | cut -d\" \" -f2)\" && ( [[ \"$c\" == \"d\" ]] && git diff \"$@\") || ( [[ \"$c\" == \"D\" ]] && git diff --staged \"$@\")' --
+df = !bash -c 'c=\"$(ps -p $PPID -o command= | cut -d\" \" -f2)\" && ~/.dotfiles/scripts/git/diff-fzf.sh ${c::1} \"$@\"' --
+dn = !bash -c 'c=\"$(ps -p $PPID -o command= | cut -d\" \" -f2)\" && git ${c::1} --name-only'
+dns = !bash -c 'c=\"$(ps -p $PPID -o command= | cut -d\" \" -f2)\" && git ${c::1} --name-status'
+d8 = !~/.dotfiles/scripts/git/diff-step-by-step.sh
+du = diff --unified=9999
+sm = submodule
+sms = submodule status
+smf = submodule foreach
+smd = !bash -c ' [ $(git ls-files -- "$1"| wc -l) -eq 1 ] && git submodule deinit \"$1\" && git rm \"$1\"' -- # It is this acceptable that only in the case of specifying a submodule that is already present in the current repository—indicated by `ls-files -- <submodule path>`—is
+bi = bisect
+bil = bisect log
+stashf = !bash -c 'git stash list | fzf --multi | grep -Eo "stash@{\\\\d+}"'
+reflogf = !bash -c 'git reflog --color=always | fzf --ansi --multi | grep -Eo "HEAD@{\\\\d+}"'
+reflowhardreset = !bash -c 'git reflogf | xargs -I{} git reset --hard {}'
+wt = worktree
+wte = !~/.dotfiles/scripts/git/worktree-exec.sh
+fuekiryukou = !bash -c 'git config --local "fuekiryukou.${1?fatal: a key as the first argv is required} ${2?:fatal: a value as the second argv is required}"' --
+frget = !bash -c 'git config --get "fuekiryukou.${1?fatal: a key as the first argv is required}"' --
+[fuekiryukou]
+logmyoneline = "%C(auto)%h%d %s %C(reset)%C(brightblack)(%cr)"
+[core]
+editor = bash -c '[ "$TERM_PROGRAM" = vscode ] && code --wait "$@" || "$EDITOR" "$@"' -- # $1 may be a file, which exists after you type `e` in the interactive patch
+excludesfile = ~/.gitignore_global
+[user]
+name = 純
+email = 15901038+nju33@users.noreply.github.com
+signingkey = A30DE4E91205FEC4
+[init]
+defaultBranch = main
+[push]
+default = simple
+[gpg]
+program = gpg
+[commit]
+gpgSign = true
+[filter "lfs"]
+required = true
+clean = git-lfs clean -- %f
+smudge = git-lfs smudge -- %f
+process = git-lfs filter-process

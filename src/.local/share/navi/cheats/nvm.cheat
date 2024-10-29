@@ -1,0 +1,7 @@
+% nvm, node.js
+
+# install lts node.js
+nvm install --lts
+
+#  set default to lts
+nvm alias default 'lts/*'

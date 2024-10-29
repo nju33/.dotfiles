@@ -1,0 +1,13 @@
+% bats, test, shell script
+
+# Run all .bats files
+find <dirs> -name *.bats -exec test/bats/bin/bats {} +
+
+# Install bats to the respository
+git submodule add https://github.com/bats-core/bats-core.git test/bats \
+    && git submodule add https://github.com/bats-core/bats-support.git test/test_helper/bats-support \
+    && git submodule add https://github.com/bats-core/bats-assert.git test/test_helper/bats-assert
+
+# test
+
+$ dirs: find . -type d -maxdepth 1

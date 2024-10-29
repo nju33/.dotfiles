@@ -1,0 +1,20 @@
+{
+    "Setup setup()": {
+        "body": [
+            "setup() {",
+            "\tproject_root=$(git rev-parse --show-toplevel)",
+            "\tload \"\\$project_root\"/test/test_helper/bats-support/load",
+            "\tload \"\\$project_root\"/test/test_helper/bats-assert/load",
+            "",
+            "\tdirname=\\$(dirname \"\\$BATS_TEST_FILENAME\")",
+            "\tbasename=\\$(basename \"\\$BATS_TEST_FILENAME\")",
+            "\tstem=\"\\${basename/.bats/}\"",
+            "",
+            "\tsource \"\\$dirname\"/\"\\$stem\".sh",
+            "}"
+        ],
+        "description": "Setup setup()",
+        "prefix": "setup",
+        "scope": "bats"
+    }
+}

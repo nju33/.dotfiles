@@ -1,11 +1,52 @@
+# EditorConfig is awesome: https://EditorConfig.org
+
+# Top-most EditorConfig file
 root = true
 
+# Unix-style newlines with a newline ending every file
 [*]
-indent_style = space
-indent_size = 2
+end_of_line = lf
+insert_final_newline = true
 charset = utf-8
 trim_trailing_whitespace = true
-insert_final_newline = true
-end_of_line = lf
-# editorconfig-tools is unable to ignore longs strings or urls
-max_line_length = null
+
+# Markdown files
+[*.md]
+trim_trailing_whitespace = false
+
+# TypeScript and JavaScript files
+[*.{ts,js,tsx,jsx}]
+indent_style = space
+indent_size = 4
+
+# CSS files
+[*.{css,sass,scss,less}]
+indent_style = space
+indent_size = 4
+
+# JSON files
+[*.json]
+indent_style = space
+indent_size = 4
+
+# YAML files
+[*.{yml,yaml}]
+indent_style = space
+indent_size = 4
+[.git*]
+indent_style = space
+indent_size = 4
+
+[*.conf]
+indent_style = space
+indent_size = 4
+
+# Shell scripts
+[*.sh]
+indent_style = space
+indent_size = 4
+[.bash*]
+indent_style = space
+indent_size = 4
+
+
