@@ -102,6 +102,7 @@ _set_paths() {
         # The under path will be automatically added via somewhere else
         # "$HOME/.cargo/bin"
         "$HOME/.deno/bin"
+        "$HOME"/Library/pnpm
         "$HOME/.local/bin"
     )
     local csv
@@ -113,7 +114,7 @@ _set_paths() {
 
     for d in "${path_dirs[@]}"; do [ ! -d "$d" ] && mkdir -p "$d"; done
 
-    [[ $PATH == *"$csv"* ]] && PATH="$csv:$PATH"
+    [[ $PATH == *"$csv"* ]] || PATH="$csv:$PATH"
 
     export PATH
 }
