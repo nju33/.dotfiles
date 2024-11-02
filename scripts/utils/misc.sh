@@ -17,6 +17,7 @@ $comm:
         env: \`$comm print env\`
     uptodate:
         brew: \`$comm uptodate brew\`
+        esbuild: \`$comm uptodate esbuild\`
         npm: \`$comm uptodate npm\`
 EOT
 }
@@ -81,6 +82,10 @@ uptodate() {
     brew)
         shift
         "${0%/*}"/misc/uptodate/brew.sh "$@"
+        ;;
+    esbuild)
+        shift
+        "${0%/*}"/misc/uptodate/esbuild.sh "$@"
         ;;
     npm)
         shift
