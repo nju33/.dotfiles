@@ -67,6 +67,7 @@ _setup_global_settings() {
         ["src/.config/alacritty/alacritty.yml"]="$HOME/.config/alacritty/alacritty.yml"
         ["src/.config/starship.toml"]="$HOME/.config/starship.toml"
         ["src/.local/share/navi/cheats/bats.cheat"]="$HOME/.local/share/navi/cheats/bats.cheat"
+        ["src/.local/share/navi/cheats/deno.cheat"]="$HOME/.local/share/navi/cheats/deno.cheat"
         ["src/.local/share/navi/cheats/nvm.cheat"]="$HOME/.local/share/navi/cheats/nvm.cheat"
     )
 

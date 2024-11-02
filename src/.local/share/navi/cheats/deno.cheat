@@ -1,0 +1,9 @@
+% deno, std, http, file_server
+
+# Build a simple server
+deno run --allow-net --allow-read jsr:@std/http/file-server --port <port>
+
+$ port: echo 8000$'\n'
+
+# Look at the instruction of the file-server
+deno run jsr:@std/http/file-server --help
