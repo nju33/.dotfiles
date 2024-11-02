@@ -97,6 +97,10 @@ uptodate() {
         shift
         "${0%/*}"/misc/uptodate/pnpm.sh "$@"
         ;;
+    rust)
+        shift
+        "${0%/*}"/misc/uptodate/rust.sh "$@"
+        ;;
     esac
 }
 
