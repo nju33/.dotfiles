@@ -19,6 +19,8 @@ $comm:
         brew: \`$comm uptodate brew\`
         esbuild: \`$comm uptodate esbuild\`
         npm: \`$comm uptodate npm\`
+        pnpm: \`$comm uptodate pnpm\`
+        rust: \`$comm uptodate rust\`
 EOT
 }
 
@@ -90,6 +92,10 @@ uptodate() {
     npm)
         shift
         "${0%/*}"/misc/uptodate/npm.sh "$@"
+        ;;
+    pnpm)
+        shift
+        "${0%/*}"/misc/uptodate/pnpm.sh "$@"
         ;;
     esac
 }
