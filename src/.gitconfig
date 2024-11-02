@@ -50,8 +50,10 @@ t = !bash -c 'c=\"$(ps -p $PPID -o command= | cut -d\" \" -f2)\" && ( [[ \"$c\" 
 tlssv = tag -l "v*"
 sh = show
 st = !~/.dotfiles/scripts/git/statf.sh
-# case-sensitive: `git l` interpreted as like `git log --pretty=oneline`, `git D` interpreted as `git log --pretty=short`
+# case-sensitive: `git l` interpreted as like `git log --pretty="$(git frget logmyoneline)"`, `git L` interpreted as `git log --pretty=short`
 l = !bash -c 'c=\"$(ps -p $PPID -o command= | cut -d\" \" -f2)\" && ( [[ \"$c\" == \"l\" ]] && git log --pretty=format:\"$(git frget logmyoneline)\" \"$@\") || ( [[ \"$c\" == \"L\" ]] && git log --pretty=fuller \"$@\")' --
+lv =!bash -c 'c=\"$(ps -p $PPID -o command= | cut -d\" \" -f2)\" && git ${c::1} -5 \"$@\"' --
+lx = !bash -c 'c=\"$(ps -p $PPID -o command= | cut -d\" \" -f2)\" && git ${c::1} -10 \"$@\"' --
 lmea = !bash -c 'c=\"$(ps -p $PPID -o command= | cut -d\" \" -f2)\" && git ${c::1} --author=\"$(git config get user.email)\" \"$@\"' --
 lmec = !bash -c 'c=\"$(ps -p $PPID -o command= | cut -d\" \" -f2)\" && git ${c::1} --committer=\"$(git config get user.email)\" \"$@\"' --
 lf = !bash -c 'git l --color=always | fzf --ansi --preview-window right:60%:wrap --preview \"git show --color=always {1}\" --bind \"ctrl-d:preview-half-page-down,ctrl-u:preview-half-page-up\" | cut -d\" \" -f1'
