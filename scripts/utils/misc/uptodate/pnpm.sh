@@ -10,12 +10,19 @@ main() {
     remote="$(nvm exec --lts --silent npm view pnpm version)"
 
     if [ ! "$local" = "$remote" ]; then
-        source "$(dirname "$0")"/../../core.sh
+        bashrc="$(dirname "$0")"/../../../../src/.bashrc
+        chmod -w "$bashrc"
 
         (
             set -x
-            curl -fsSL https://get.pnpm.io/install.sh | PNPM_VERSION="$remote" SHELL='' sh -
+            curl -fsSL https://get.pnpm.io/install.sh |
+                PNPM_VERSION="$remote" sh - |
+                awk '/Copying pnpm CLI from/' |
+                awk -F' ' '{print $5}' |
+                xargs -n1 -I{} sh -c "cp {} \"$HOME\"/Library/pnpm/pnpm"
         )
+
+        chmod +w "$bashrc"
     fi
 }
 
