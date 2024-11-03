@@ -42,7 +42,7 @@ soft = !bash -c '[ -n \"$1\" ] && git reset --soft \"$1\" || git logbyhars | tai
 squash = !bash -c 'git logbyhars | fzf --ansi --preview \"echo -n git commit --squash {1}\" | cut -d\" \" -f1 | xargs -I{} git c --squash {} --no-edit'
 fixup = !bash -c 'git logbyhars | fzf --ansi --preview \"echo -n git commit --fixup {1}\" | cut -d\" \" -f1 | xargs -I{} git c --fixup {} --no-edit'
 autosquash = !bash -c 'git logbyhars | fzf --ansi --preview \"echo -n git rebase -i --autosquash {1}\" | cut -d\" \" -f1 | GIT_SEQUENCE_EDITOR=true xargs -I{} git rebase -i --autosquash {}'
-cm0s= commit --allow-empty --allow-empty-message
+todo = !~/.dotfiles/scripts/git/todo.sh
 allc = !bash -c 'git A && [ -n \"$1\" ] && git C \"$1\" || git c --amend --no-edit' --
 allcc = !bash -c 'git A && git c --reuse-message=${1-"$(git rev-parse HEAD)"}' --
 # case-sensitive: `git t` interpreted as `git tag`, `git T` interpreted as `git tag -a`
