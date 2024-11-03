@@ -17,6 +17,7 @@ $comm:
         env: \`$comm print env\`
     uptodate:
         brew: \`$comm uptodate brew\`
+        deno: \`$comm uptodate deno\`
         esbuild: \`$comm uptodate esbuild\`
         npm: \`$comm uptodate npm\`
         pnpm: \`$comm uptodate pnpm\`
@@ -84,6 +85,10 @@ uptodate() {
     brew)
         shift
         "${0%/*}"/misc/uptodate/brew.sh "$@"
+        ;;
+    deno)
+        shift
+        "${0%/*}"/misc/uptodate/deno.sh "$@"
         ;;
     esbuild)
         shift
