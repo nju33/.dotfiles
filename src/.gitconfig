@@ -6,6 +6,8 @@ frdelfile = !bash -c 'git fr --path ${1?fatal: a path as the first argv is requi
 frrep = !bash -c 'git fr --${1?fatal: a method as the first argv is required}-callback \"return message.replace(b\\\"${2?fatal: a old value as the second argv is required}\\\", b\\\"${3?fatal: a new value as the third argv is required}\\\")\"' --
 frrepmsg = !bash -c 'git frrep message $@' --
 cloner = clone --recursive
+# Assuming to only use as soon as `git init`
+postinit = commit --allow-empty --allow-empty-message --message ""
 init-hook = !~/.dotfiles/scripts/git/init-hook.sh
 init-bats = !~/.dotfiles/scripts/git/init-bats.sh
 ls-alias = config --get-regexp ^alias
