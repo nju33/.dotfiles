@@ -20,9 +20,11 @@ p = push
 pu = push --set-upstream
 pfl = push --force-with-lease
 pt = push --tags
+pn = !bash -c 'git p ${2-origin} \"refs/notes/${1-*}\"' --
 ll = pull
 llr = pull --rebase
 ft = fetch
+ftn = !bash -c 'git ft ${2-origin} \"refs/notes/${1-*}:refs/notes/${1-*}\"' --
 sync = !bash -c 'git ft ${2-origin} && git reset --hard ${2-origin}/${1-main} && git clean -fd' --
 # case-sensitive: `git s` interpreted as `git status --short`, `git S` interpreted as `git status`
 s = !bash -c 'c=\"$(ps -p $PPID -o command= | cut -d\" \" -f2)\" && ( [[ $c == \"s\" ]] && git status --short \"$@\" ) || ( [[ $c == \"S\" ]] && git status \"$@\")' --

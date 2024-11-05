@@ -42,10 +42,10 @@ _git_completion() {
             d | dy)
                 result="diff"
                 ;;
-            ft)
+            ft | ftn)
                 result="fetch"
                 ;;
-            p | pu | pfl | pt)
+            p | pu | pfl | pt | pn)
                 result="push"
                 ;;
             l | L | lf | lps | lmea | lmec | lgrep)
