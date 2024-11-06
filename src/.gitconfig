@@ -59,6 +59,7 @@ ns = !~/.dotfiles/scripts/git/notes.sh
 ne = !~/.dotfiles/scripts/git/notes.sh
 nr = !~/.dotfiles/scripts/git/notes.sh
 nl = !~/.dotfiles/scripts/git/notes.sh
+roothash = rev-list --max-parents=0 HEAD
 t = !bash -c 'c=\"$(ps -p $PPID -o command= | cut -d\" \" -f2)\" && ( [[ \"$c\" == \"t\" ]] && git tag \"$@\") || ( [[ \"$c\" == \"T\" ]] && git tag -a \"$@\")' --
 tlssv = tag -l "v*"
 sh = show
