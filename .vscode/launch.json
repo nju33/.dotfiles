@@ -1,0 +1,20 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "bashdb",
+            "request": "launch",
+            "name": "run .sh",
+            "program": "${file}",
+            "cwd": "${input:CWD}"
+        }
+    ],
+    "inputs": [
+        {
+            "id": "CWD",
+            "description": "input where to run a program",
+            "type": "promptString",
+            "default": "{workspaceFolder}"
+        }
+    ]
+}
