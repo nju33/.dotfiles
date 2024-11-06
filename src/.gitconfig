@@ -49,10 +49,20 @@ autosquash = !bash -c 'git logbyhars | fzf --ansi --preview \"echo -n git rebase
 todo = !~/.dotfiles/scripts/git/todo.sh
 allc = !bash -c 'git A && [ -n \"$1\" ] && git C \"$1\" || git c --amend --no-edit' --
 allcc = !bash -c 'git A && git c --reuse-message=${1-"$(git rev-parse HEAD)"}' --
-# case-sensitive: `git t` interpreted as `git tag`, `git T` interpreted as `git tag -a`
+# case-sensitive: `git n` interpreted as `git notes --ref [ref=commits] add <initial-commit>`, `git N` interpreted as `git notes --ref [ref=commits] add HEAD`
+# the diffrences between `n` and `n…` are:
+#   - `n`: the ref is always commits
+#   - `n{a,s,n,r,l}`: the ref is enabled to select or input as you like
+n = !~/.dotfiles/scripts/git/notes.sh
+na = !~/.dotfiles/scripts/git/notes.sh
+ns = !~/.dotfiles/scripts/git/notes.sh
+ne = !~/.dotfiles/scripts/git/notes.sh
+nr = !~/.dotfiles/scripts/git/notes.sh
+nl = !~/.dotfiles/scripts/git/notes.sh
 t = !bash -c 'c=\"$(ps -p $PPID -o command= | cut -d\" \" -f2)\" && ( [[ \"$c\" == \"t\" ]] && git tag \"$@\") || ( [[ \"$c\" == \"T\" ]] && git tag -a \"$@\")' --
 tlssv = tag -l "v*"
 sh = show
+shn = !~/.dotfiles/scripts/git/get-message-with-all-notes.sh
 st = !~/.dotfiles/scripts/git/statf.sh
 # case-sensitive: `git l` interpreted as like `git log --pretty="$(git frget logmyoneline)"`, `git L` interpreted as `git log --pretty=short`
 l = !bash -c 'c=\"$(ps -p $PPID -o command= | cut -d\" \" -f2)\" && ( [[ \"$c\" == \"l\" ]] && git log --pretty=format:\"$(git frget logmyoneline)\" \"$@\") || ( [[ \"$c\" == \"L\" ]] && git log --pretty=fuller \"$@\")' --

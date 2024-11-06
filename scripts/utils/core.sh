@@ -8,6 +8,18 @@ _is_platform_linux() { [ "$_platform" = linux ]; }
 
 _is_in_vscode() { [ "$TERM_PROGRAM" = vscode ]; }
 
+_ensure_stdin_is_pipe() {
+    [ -p /dev/stdin ] || {
+        echo "fatal: standard input is not a pipe." >&2
+        exit 1
+    }
+}
+
+# for example, approximately this much is the x-axis range size of VSCode with full screen
+# given its terminal is almost ocuupying the window
+_long_range_position=150
+_has_long_range() { [ "$(tput cols)" -gt "$_long_range_position" ]; }
+
 _move_user_specific_bin_dir() { cd ~/.local/bin || return 1; }
 
 _detect_arch() {
