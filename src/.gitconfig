@@ -28,8 +28,8 @@ ftn = !bash -c 'git ft ${2-origin} \"refs/notes/${1-*}:refs/notes/${1-*}\"' --
 sync = !bash -c 'git ft ${2-origin} && git reset --hard ${2-origin}/${1-main} && git clean -fd' --
 # case-sensitive: `git s` interpreted as `git status --short`, `git S` interpreted as `git status`
 s = !bash -c 'c=\"$(ps -p $PPID -o command= | cut -d\" \" -f2)\" && ( [[ $c == \"s\" ]] && git status --short \"$@\" ) || ( [[ $c == \"S\" ]] && git status \"$@\")' --
-# case-sensitive: `git a` interpreted as `git add`, `git A` interpreted as `git add --all`
-a = !bash -c 'c=\"$(ps -p $PPID -o command= | cut -d\" \" -f2)\" && ( [[ $c == \"a\" ]] && git add ${1?fatal: you must specify path(s) to add} ) || ( [[ $c == \"A\" ]] && git add --all )' --
+# case-sensitive: `git a` interpreted as `git add [<pathspec>...]`, `git A` interpreted as `git add --all`
+a = !~/.dotfiles/scripts/git/add.sh
 all = add --all
 ap = add --patch
 b = branch
@@ -43,9 +43,9 @@ ca = commit --amend
 logbyhars = !bash -c 'git log --color=always --pretty=format:\"%C(yellow)%H%C(reset) %C(cyan)%ar%C(reset) %s\"'
 # TODO! turn the current fzf preview into the result of `git diff`
 soft = !bash -c '[ -n \"$1\" ] && git reset --soft \"$1\" || git logbyhars | tail -n+2 | fzf --ansi --preview \"echo -n git reset --soft {1}\" | cut -d\" \" -f1 | xargs -I{} git reset --soft {}' --
-squash = !bash -c 'git logbyhars | fzf --ansi --preview \"echo -n git commit --squash {1}\" | cut -d\" \" -f1 | xargs -I{} git c --squash {} --no-edit'
-fixup = !bash -c 'git logbyhars | fzf --ansi --preview \"echo -n git commit --fixup {1}\" | cut -d\" \" -f1 | xargs -I{} git c --fixup {} --no-edit'
-autosquash = !bash -c 'git logbyhars | fzf --ansi --preview \"echo -n git rebase -i --autosquash {1}\" | cut -d\" \" -f1 | GIT_SEQUENCE_EDITOR=true xargs -I{} git rebase -i --autosquash {}'
+squash = !bash -c '~/.dotfiles/scripts/git/rebase-fzf.sh squash \"$@\"' --
+fixup = !bash -c '~/.dotfiles/scripts/git/rebase-fzf.sh fixup \"$@\"' --
+autosquash = !~/.dotfiles/scripts/git/autosquash-fzf.sh
 todo = !~/.dotfiles/scripts/git/todo.sh
 allc = !bash -c 'git A && [ -n \"$1\" ] && git C \"$1\" || git c --amend --no-edit' --
 allcc = !bash -c 'git A && git c --reuse-message=${1-"$(git rev-parse HEAD)"}' --
