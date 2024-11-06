@@ -86,7 +86,7 @@ frget = !bash -c 'git config --get "fuekiryukou.${1?fatal: a key as the first ar
 [fuekiryukou]
 logmyoneline = "%C(auto)%h%d %s %C(reset)%C(brightblack)(%cr)"
 [core]
-editor = bash -c '[ "$TERM_PROGRAM" = vscode ] && code --wait "$@" || "$EDITOR" "$@"' -- # $1 may be a file, which exists after you type `e` in the interactive patch
+editor = bash -c '[ "$TERM_PROGRAM" = vscode ] && code --wait ${1+"$@"} || "$EDITOR" ${1+"$@"}' -- # $1 may be a file, which exists after you type `e` in the interactive patch
 excludesfile = ~/.gitignore_global
 [user]
 name = 純
