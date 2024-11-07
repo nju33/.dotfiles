@@ -16,7 +16,8 @@
 #   1
 #   128 - issued by Git
 simulate_interactive_rebase_file() {
-    log_range="${1?fatal: need to specify hash as \$1}"~1..HEAD
+    previous_upstream=${1?fatal: need to specify hash as \$1}
+    log_range() { printf '%s..%s' "$previous_upstream"~1 "${1-HEAD}"; }
     processed_hashes=
 
     if echo "$1" | is_initial_commit; then
@@ -32,28 +33,38 @@ simulate_interactive_rebase_file() {
         # HACK: the last `| xargs` only means removing head spaces
         grep_text=$(echo "$subject" | awk -F' ' '{if(match($1,/^(fixup|squash)!$/))$1="";print}' | xargs)
 
+        update_processed_hashes() {
+            processed_hashes=${processed_hashes:+"$processed_hashes";}"$target_commit"
+        }
+
         # The means below is the commit message doesn’t prefix-exact-match
         # for neither fixup nor squash
         if [ "$subject" = "$grep_text" ]; then
-            processed_hashes="${processed_hashes}""${processed_hashes:+;}""$target_commit"
+            update_processed_hashes
             echo "$1"
             return
         fi
 
-        nearest_related_commit_hash=$(git log -1 --grep ^"$grep_text" --pretty=format:"%h" "$log_range")
+        nearest_related_commit_hash=$(
+            git log -1 --grep ^"$grep_text" --pretty=format:"%h" "$(log_range "$target_commit")"
+        )
 
         # The means below is not hitting the result of query for log because
         # the $nearest_related_commit_hash is more older than the target_commit;
         # thus handling last hit commit as root commit
         if [ -z "$nearest_related_commit_hash" ]; then
-            processed_hashes="${processed_hashes}""${processed_hashes:+;}""$target_commit"
+            update_processed_hashes
+            echo "$1"
+        # If it hit itself
+        elif [ "$nearest_related_commit_hash" = "$target_commit" ]; then
+            update_processed_hashes
             echo "$1"
         else
             find_related_root_hash_successively "$nearest_related_commit_hash"\;"$1"
         fi
     }
 
-    for hash in $(git log --pretty=format:"%h" "$log_range"); do
+    for hash in $(git log --pretty=format:"%h" "$(log_range)"); do
         # In `find_related_root_hash_successively` used below, the hash
         # may be already handled. In such a case, the process for the hash
         # will be skipped
@@ -70,12 +81,12 @@ simulate_interactive_rebase_file() {
         if [ ! "$hash" = "$root_hash" ]; then
             # Save all commit hashes having common related parent commit in one place
             # NOTE: ordering old -> new
-            eval "__hash__$root_hash=\"$hash\"\"\${__hash__$root_hash:+;}\"\"\$__hash__$root_hash\""
+            eval "__hash__$root_hash=\"$hash\"\${__hash__$root_hash:+;\"\$__hash__$root_hash\"}"
         fi
     done
 
     viewed_list=
-    for hash in $(git log --reverse --pretty=format:"%h" "$log_range"); do
+    for hash in $(git log --reverse --pretty=format:"%h" "$(log_range)"); do
         current_subject=$(echo "$hash" | get_subject)
         list=$(eval "echo \"\$__hash__$hash\"")
 
@@ -172,10 +183,11 @@ main() {
     fi
 
     hash=$(
-        (echo "git rebase --interactive --autosquash" && git l) |
+        git l --color=always |
             fzf --ansi \
-                --header-lines 1 \
-                --preview "simulate_interactive_rebase_file {1} | render" \
+                --header='git rebase --interactive --autosquash' \
+                --prompt='[<previous_upstream>]~1 ' \
+                --preview 'simulate_interactive_rebase_file {1} | render' \
                 --preview-window "$preview_window" |
             cut -d' ' -f1
     )
@@ -184,7 +196,7 @@ main() {
     export GIT_SEQUENCE_EDITOR=true
     # NOTE: must not `git commit` in a pipeline by fzf because that
     # vim says "Vim: Warning: Input is not from a terminal"
-    git rebase --interactive --autosquash "$hash"~1
+    ${hash:+git rebase --interactive --autosquash "$hash"~1}
 }
 
 if echo "$0" | grep -qE '\.sh$'; then
