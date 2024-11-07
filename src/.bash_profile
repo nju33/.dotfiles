@@ -1,8 +1,13 @@
 #!/usr/bin/env bash
 
 # Language settings
-export LANG=ja_JP.UTF-8
-export LC_ALL=ja_JP.UTF-8
+# NOTE: availables can be confirmed with `locale -a`
+# Set the system language to English
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+# those of the settings of Japanese
+# export LANG=ja_JP.UTF-8
+# export LC_ALL=ja_JP.UTF-8
 
 # macOS specific settings
 if [ "$(uname)" = 'Darwin' ]; then
