@@ -7,7 +7,7 @@ frrep = !bash -c 'git fr --${1?fatal: a method as the first argv is required}-ca
 frrepmsg = !bash -c 'git frrep message $@' --
 cloner = clone --recursive
 # Assuming to only use as soon as `git init`
-postinit = commit --allow-empty --allow-empty-message --message ""
+postinit = !~/.dotfiles/scripts/git/postinit.sh
 init-hook = !~/.dotfiles/scripts/git/init-hook.sh
 init-bats = !~/.dotfiles/scripts/git/init-bats.sh
 ls-alias = config --get-regexp ^alias
