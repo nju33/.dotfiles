@@ -35,6 +35,8 @@ ap = add --patch
 b = branch
 bm = branch --merged
 bmi = branch --no-merged
+# the below abbreviation stands for `orphan branch`
+ob = !bash -c 'git update-ref refs/heads/\"${1?fatal: need to set <branch-name> as $1}\" \"$(git commit-tree \"$(git hash-object -t tree /dev/null)\" < /dev/null)\"' --
 sw = switch
 us = restore --staged
 # case-sensitive: `git c` interpreted as `git commit`, `git C` interpreted as `git commit --message`
