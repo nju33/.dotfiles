@@ -90,15 +90,19 @@ simulate_interactive_rebase_file() {
         current_subject=$(echo "$hash" | get_subject)
         list=$(eval "echo \"\$__hash__$hash\"")
 
-        # 1. the hash is the commit being `edit` command
+        echo_line() {
+            printf '%s %s %s\n' "${1?comm}" "${2?hash}" "${3?subject}"
+        }
+
+        # 1. the hash is the commit being `pick` command
         # 2. the hash hasn't showned yet
         if [ -z "$list" ] && ! echo "$viewed_list" | grep -qoE "^$hash|;$hash"; then
-            echo pick "$hash" "$current_subject"
+            echo_line pick "$hash" "$current_subject"
             continue
         fi
 
         if [ -n "$list" ]; then
-            echo pick "$hash" "$current_subject"
+            echo_line pick "$hash" "$current_subject"
             viewed_list="$viewed_list""${viewed_list:+;}""$list"
         fi
 
@@ -112,11 +116,7 @@ simulate_interactive_rebase_file() {
                 fi
 
                 action_name=$(echo "$subject" | grep -o -e '^fixup' -e '^squash')
-                if [ -z "$action_name" ]; then
-                    action_name=pick
-                fi
-
-                echo "$action_name" "$current_related_hash" "$subject"
+                echo_line "${action_name:-pick}" "$current_related_hash" "$subject"
             done
         )
     done
