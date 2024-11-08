@@ -176,21 +176,25 @@ repc() {
         return 1
     }
 
-    local temp_file
+    local temp_file command
+
     temp_file=$(misc gen temp_file repc)
     readonly temp_file
 
-    # shellcheck disable=SC2317
-    cleanup() { rm -rf "${1?temp_file}"; }
-    # shellcheck disable=SC2064
-    trap "cleanup $temp_file" EXIT HUP INT TERM
+    # shellcheck disable=SC2317,SC2064
+    {
+        cleanup() { rm -rf "${1?temp_file}"; }
+        trap "cleanup $temp_file" EXIT HUP INT TERM
+    }
 
     while read -r num; do
-        fc -l "$num" "$num" | cut -f2 | sed -e's/^ *//' -e's/ *$//' >>"$temp_file"
-    done < <(history | sort -r | fzf --multi | awk '{print $1h}' | sort)
+        # NOTE: If the num below is of the last history, `fc -l` will return the entire command
+        # history; it's unexpected behavior at all. To address this matter, the list are
+        # extracted within the range from the previous of the num, leaveing only the last line
+        fc -l "$((num - 1))" "$num" | tail -n1 | cut -f2 | sed -e's/^ *//' -e's/ *$//' >>"$temp_file"
+    done < <(history | sort -r | fzf --multi | awk '{print $1}' | sort)
 
-    local command
-    command="$(cat <"$temp_file" | awk '{if (NR == 1) {printf $0} else {printf "; "$0}}')"
+    command=$(cat <"$temp_file" | awk '{if (NR == 1) {printf $0} else {printf "; "$0}}')
     readonly command
 
     eval "$command"
