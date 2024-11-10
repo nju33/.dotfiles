@@ -98,10 +98,21 @@ export GPG_TTY
 
 # PATH settings
 _set_paths() {
+    if [ -s "$HOME/.ripgreprc" ]; then
+        export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
+    fi
+
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+    export VOLTA_HOME="$HOME/.volta"
+
     local -ar path_dirs=(
         # The under path will be automatically added via somewhere else
         # "$HOME/.cargo/bin"
-        "$HOME/.deno/bin"
+        "$HOME"/.deno/bin
+        "$VOLTA_HOME"/bin
         "$HOME"/Library/pnpm
         "$HOME/.local/bin"
     )
@@ -142,15 +153,6 @@ fi
 command -v fzf >/dev/null && eval "$(fzf --bash)"
 # Starship prompt
 command -v starship >/dev/null && eval "$(starship init bash)"
-
-if [ -s "$HOME/.ripgreprc" ]; then
-    export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
-fi
-
-# NVM configuration
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 # SSH agent configuration for tmux on Linux
 if [ "$(uname)" = "Linux" ]; then

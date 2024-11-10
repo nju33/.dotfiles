@@ -1,6 +1,6 @@
 #!/bin/sh
 
-source "${0%/*}/core.sh"
+. "${0%/*}/core.sh"
 
 show_help() {
     comm=misc
@@ -22,6 +22,8 @@ $comm:
         npm: \`$comm uptodate npm\`
         pnpm: \`$comm uptodate pnpm\`
         rust: \`$comm uptodate rust\`
+        volta: \`$comm uptodate volta\`
+        xc: \`$comm uptodate xc\`
 EOT
 }
 
@@ -106,25 +108,15 @@ uptodate() {
         shift
         "${0%/*}"/misc/uptodate/rust.sh "$@"
         ;;
+    volta)
+        shift
+        "${0%/*}"/misc/uptodate/volta.sh "$@"
+        ;;
+    xc)
+        shift
+        "${0%/*}"/misc/uptodate/xc.sh "$@"
+        ;;
     esac
-}
-
-random() {
-    data=""
-
-    if [ -p /dev/stdin ]; then
-        while IFS= read -r line; do
-            data+="$line"$'\n'
-        done
-    fi
-
-    if [ $# -gt 0 ]; then
-        for arg in "$@"; do
-            data+="$arg"$'\n'
-        done
-    fi
-
-    echo "$data"
 }
 
 if echo "$0" | grep -qE '\.sh$'; then
