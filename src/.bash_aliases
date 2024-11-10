@@ -211,7 +211,7 @@ repc() {
 #
 sce() {
     command -v ranger >/dev/null 2>&1 || {
-        echo "Failed because the required dep, ranger, is not installed" >&2
+        echo "fatal: ranger is not installed" >&2
         return 1
     }
 
@@ -219,26 +219,52 @@ sce() {
     local current_dir ranger_dir
     current_dir=$(pwd)
 
-    # To avoid treating it as a glob, wrap it with " on the right-hand side below.
-    while [[ $home_dir != "$current_dir" && $current_dir != "/" ]]; do
-        if [ -d "$current_dir/.git" ]; then
-            ranger_dir="$current_dir/.ranger"
+    if git rev-parse --show-toplevel >/dev/null 2>&1; then
+        current_dir=$(git rev-parse --show-toplevel)
+        ranger_dir="$current_dir"/.ranger
+        local -r p='Does you create .ranger/ in the project root of Git? (y/N): '
+        y() {
+            printf "\033[1A\033[K%s""${FUNCNAME[0]}"$'\n' "$p"
+            mkdir "$ranger_dir"
+        }
+        n() {
+            printf "\033[1A\033[K%s""${FUNCNAME[0]}"$'\n' "$p"
+            echo abort: not found '.ranger' in the project root of Git >&2
+        }
 
-            if [ ! -d "$current_dir/.ranger" ]; then
-                echo "Failed execution dut to non-existing '$current_dir/.ranger'" >&2
-                exit 1
-            fi
-            break
+        if [ ! -d "$ranger_dir" ]; then
+            while true; do
+                read -r -p"$p" -n1 answer </dev/tty
+                if [ -n "$answer" ] && echo "$answer" | grep -q -ey -en; then
+                    case "$answer" in
+                    y)
+                        echo && y
+                        break
+                        ;;
+                    n)
+                        echo && n
+                        return 1
+                        ;;
+                    esac
+                elif [ -z "$answer" ]; then
+                    n
+                    return 1
+                fi
+            done
         fi
-
-        current_dir=$(dirname "$current_dir")
-    done
-
-    if [[ -n $ranger_dir ]]; then
-        ranger --datadir="$ranger_dir"
     else
-        ranger
+        while [ "$home_dir" = "$current_dir" ] && [ "$current_dir" = / ]; do
+            if [ -d "$current_dir"/.ranger ]; then
+                ranger_dir="$current_dir"/.ranger
+                break
+            fi
+
+            current_dir=$(dirname "$current_dir")
+        done
+
     fi
+
+    ranger ${ranger_dir:+--datadir="$ranger_dir"}
 }
 
 # Search files, select a file, and view it–if on VSCode, to open by this instead of
