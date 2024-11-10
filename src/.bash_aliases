@@ -417,6 +417,28 @@ _tmux_completion() {
 }
 complete -o default -F _tmux_completion tmux
 
+navi() {
+    local _navi cpath local_cheat_paths
+
+    _navi=$(which navi)
+    readonly _navi_path
+
+    if [ -z "${cpath:=$(git rev-parse --show-toplevel 2>/dev/null)}" ]; then
+        cpath=$(pwd)
+    fi
+    local_cheat_paths=$(
+        find "$cpath" -type f -name '*.cheat' -maxdepth 1 -exec echo {} + |
+            tr ' ' ':'
+    )
+    readonly cpath local_cheat_paths
+
+    if [ -z "$local_cheat_paths" ]; then
+        $_navi "$@"
+    else
+        $_navi --path="$local_cheat_paths":"$NAVI_PATH" "$@"
+    fi
+}
+
 # This function enables you to write a js code in VSCode and even more
 # execut it in browsers: Safari, Google Chrome Canary.
 #
